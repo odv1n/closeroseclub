@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>𝕮𝖑𝖔𝖘𝖊𝖉 𝕽𝖔𝖘𝖊 𝕮𝖑𝖚𝖇</title>
+    <style>
+        @import url('https://googleapis.com');
+
+        :root {
+            --bg: #040404;
+            --card: rgba(11, 11, 11, 0.92);
+            --border: #1C1C1C;
+            --yellow: #FFE600;
+            --red: #D90416;
+            --text: #FFFFFF;
+            --gray: #666666;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+
+        body {
+            background-color: #000000;
+            color: var(--text);
+            font-family: 'Space Mono', monospace;
+            font-weight: 700;
+            font-style: italic;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 24px 16px;
+            overflow-x: hidden;
+        }
+
+        #petals-canvas {
+            position: fixed;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 120;
+        }
+
+        #tv-screen {
+            position: fixed; inset: 0; background: var(--bg); z-index: 100;
+            display: flex; flex-direction: column; justify-content: center; align-items: center;
+            padding: 24px; text-align: center;
+            animation: crtTurnOn 0.9s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+
+        @keyframes crtTurnOn {
+            0% { transform: scale(0.005, 0.002); filter: brightness(30); opacity: 0; }
+            35% { transform: scale(1, 0.003); filter: brightness(15); opacity: 1; }
+            70% { transform: scale(1, 1.02); filter: brightness(2.5); }
+            100% { transform: scale(1, 1); filter: brightness(1); opacity: 1; }
+        }
+
+        .channel-tag { position: absolute; top: 24px; right: 24px; font-size: 0.72rem; color: #444444; letter-spacing: 2px; }
+
+                @keyframes neonPulse {
+            0%, 100% {
+                text-shadow: 0 0 18px rgba(255, 230, 0, 0.25), 0 0 38px rgba(255, 230, 0, 0.12);
+            }
+            50% {
+                text-shadow: 0 0 28px rgba(255, 230, 0, 0.65), 0 0 56px rgba(255, 230, 0, 0.35);
+            }
+        }
+
+        .gothic-logo {
+            font-family: "Times New Roman", Times, Georgia, serif; font-style: normal;
+            font-size: 3.1rem; font-weight: 400; color: var(--yellow); letter-spacing: 1px;
+            line-height: 1.15; margin-bottom: 42px;
+            animation: neonPulse 3.2s infinite ease-in-out;
+            position: relative; z-index: 130;
+        }
+
+
+        @keyframes glitchHover {
+            0% { transform: translate(0) skewX(0deg); text-shadow: none; box-shadow: none; }
+            15% { transform: translate(-4px, 1px) skewX(-6deg); text-shadow: 3px 0 #00F0FF, -3px 0 #FF003C; box-shadow: -3px 0 0 #00F0FF, 3px 0 0 #FF003C; }
+            35% { transform: translate(4px, -2px) skewX(5deg); text-shadow: -4px 0 #00F0FF, 4px 0 #FF003C; box-shadow: 3px 0 0 #00F0FF, -3px 0 0 #FF003C; }
+            55% { transform: translate(-3px, 2px) skewX(-3deg); text-shadow: 3px 0 #00F0FF, -3px 0 #FF003C; box-shadow: -2px 0 0 #00F0FF; }
+            75% { transform: translate(3px, -1px) skewX(4deg); text-shadow: -3px 0 #00F0FF, 3px 0 #FF003C; box-shadow: 2px 0 0 #FF003C; }
+            100% { transform: translate(0) skewX(0deg); text-shadow: none; box-shadow: none; }
+        }
+
+        .enter-btn {
+            background: transparent; color: var(--text); border: 1px solid #333333;
+            padding: 15px 34px; font-family: 'Space Mono', monospace; font-size: 0.85rem;
+            font-weight: 700; font-style: italic; letter-spacing: 3px; text-transform: uppercase;
+            cursor: pointer; transition: border-color 0.2s ease, color 0.2s ease;
+            position: relative; z-index: 150;
+        }
+
+        .enter-btn:hover, .enter-btn:active {
+            border-color: var(--yellow); color: var(--yellow);
+            animation: glitchHover 0.35s steps(2) 1;
+        }
+
+        .wrapper {
+            width: 100%; max-width: 440px; opacity: 0; transform: translateY(14px);
+            transition: opacity 0.7s ease, transform 0.7s ease; pointer-events: none;
+            position: relative; z-index: 130;
+        }
+
+        .wrapper.visible { opacity: 1; transform: translateY(0); pointer-events: all; }
+
+        header { text-align: center; margin-bottom: 32px; padding-bottom: 22px; border-bottom: 1px solid var(--border); }
+
+                .title {
+            font-family: "Times New Roman", Times, Georgia, serif; font-style: normal;
+            font-size: 2.15rem; font-weight: 400; color: var(--yellow); letter-spacing: 1px;
+            line-height: 1.15; margin-bottom: 12px;
+            animation: neonPulse 3.2s infinite ease-in-out;
+        }
+
+
+        .subtitle {
+            display: inline-block; font-size: 0.68rem; font-weight: 700; font-style: italic;
+            letter-spacing: 3px; color: var(--text); background: #121212;
+            border: 1px solid #242424; padding: 5px 12px; text-transform: uppercase;
+        }
+
+        .jp { display: block; font-size: 0.8rem; font-weight: 700; font-style: italic; color: var(--gray); letter-spacing: 4px; margin-top: 10px; }
+
+        .list { display: flex; flex-direction: column; gap: 14px; }
+
+        .card {
+            background: var(--card); border: 1px solid var(--border); padding: 18px 20px;
+            display: flex; justify-content: space-between; align-items: center; gap: 14px;
+            transition: border-color 0.2s ease, background 0.2s ease;
+            cursor: pointer; user-select: none;
+        }
+
+        .card:hover, .card:active {
+            border-color: var(--yellow); background: #101010;
+            animation: glitchHover 0.3s steps(2) 1;
+        }
+
+        .card-left { display: flex; flex-direction: column; gap: 5px; }
+        .item-name { font-size: 0.82rem; font-weight: 700; font-style: italic; color: var(--text); letter-spacing: 0.4px; text-transform: uppercase; line-height: 1.3; }
+        .item-price { font-size: 0.8rem; font-weight: 700; font-style: italic; color: #A8A8A8; letter-spacing: 0.5px; }
+
+        .status {
+            font-size: 0.62rem; font-weight: 700; font-style: italic; letter-spacing: 1.5px;
+            padding: 5px 9px; text-transform: uppercase; border: 1px solid rgba(217, 4, 22, 0.65);
+            color: var(--red); background: rgba(217, 4, 22, 0.08); white-space: nowrap; flex-shrink: 0;
+        }
+
+        .status.yellow { border-color: var(--yellow); color: var(--yellow); background: rgba(255, 230, 0, 0.08); }
+		
+        .socials-section {
+            position: relative;
+            z-index: 200;
+            margin-top: 28px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .socials-label {
+            font-size: 0.65rem;
+            font-weight: 700;
+            font-style: italic;
+            color: var(--gray);
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+
+        .socials {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+        }
+
+        .social-link {
+            display: inline-block;
+            background: var(--card);
+            border: 1px solid var(--border);
+            color: #A8A8A8;
+            text-decoration: none;
+            font-size: 0.72rem;
+            font-weight: 700;
+            font-style: italic;
+            letter-spacing: 2px;
+            padding: 9px 18px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: border-color 0.2s ease, color 0.2s ease;
+        }
+
+        .social-link:hover, .social-link:active {
+            border-color: var(--yellow);
+            color: var(--yellow);
+            animation: glitchHover 0.3s steps(2) 1;
+        }
+
+        footer { text-align: center; margin-top: 32px; font-size: 0.65rem; font-weight: 700; font-style: italic; color: #3A3A3A; letter-spacing: 2px; }
+
+
+
+        .modal-overlay {
+            position: fixed; inset: 0; background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(6px); z-index: 300;
+            display: flex; justify-content: center; align-items: center; padding: 18px;
+            opacity: 0; pointer-events: none; transition: opacity 0.28s ease;
+        }
+
+        .modal-overlay.active { opacity: 1; pointer-events: all; }
+
+        .modal-card {
+            background: #0A0A0A; border: 1px solid #2C2C2C;
+            width: 92vw; max-width: 820px; min-height: 440px;
+            padding: 36px; position: relative;
+            display: flex; align-items: center;
+            transform: scale(0.92) translateY(12px);
+            transition: transform 0.32s cubic-bezier(0.22, 1, 0.36, 1), border-color 0.25s ease;
+        }
+
+        .modal-overlay.active .modal-card {
+            transform: scale(1) translateY(0);
+            border-color: var(--yellow);
+        }
+
+        .modal-close {
+            position: absolute; top: 18px; right: 22px;
+            background: transparent; border: none; color: var(--gray);
+            font-family: 'Space Mono', monospace; font-size: 1.25rem; font-weight: 700;
+            cursor: pointer; padding: 6px 10px;
+        }
+        .modal-close:hover, .modal-close:active { color: var(--yellow); }
+
+        .modal-body {
+            display: flex; gap: 32px; align-items: center; width: 100%;
+        }
+
+                .modal-photo-slot {
+            width: 320px; height: 320px; flex-shrink: 0;
+            background: #050505; border: 1px solid #222222;
+            display: flex; justify-content: center; align-items: center;
+            overflow: hidden; position: relative;
+            cursor: zoom-in;
+            box-shadow: inset 0 0 28px 14px #0A0A0A;
+        }
+
+        .modal-photo-slot.zoomed {
+            cursor: zoom-out;
+        }
+
+        .modal-photo-slot img {
+            width: 100%; height: 100%; object-fit: cover; display: block;
+            filter: brightness(0.7) contrast(1.18);
+            transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1);
+            transform-origin: center center;
+        }
+
+        .modal-photo-slot::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            box-shadow: inset 0 0 32px 16px #0A0A0A;
+            backdrop-filter: blur(0px);
+            -webkit-mask-image: radial-gradient(circle, transparent 58%, black 100%);
+            mask-image: radial-gradient(circle, transparent 58%, black 100%);
+            backdrop-filter: blur(4px);
+            pointer-events: none;
+            z-index: 2;
+        }
+
+        .zoom-btn {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            z-index: 5;
+            background: rgba(10, 10, 10, 0.85);
+            color: var(--yellow);
+            border: 1px solid #333333;
+            padding: 4px 8px;
+            font-family: 'Space Mono', monospace;
+            font-size: 0.65rem;
+            font-weight: 700;
+            font-style: italic;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: border-color 0.2s ease, background 0.2s ease;
+        }
+
+        .zoom-btn:hover, .zoom-btn:active {
+            border-color: var(--yellow);
+            background: #141414;
+        }
+
+        .photo-placeholder {
+            font-size: 0.85rem; color: #555555; text-align: center;
+            letter-spacing: 2px; line-height: 1.5; padding: 12px;
+        }
+
+
+        .modal-info {
+            display: flex; flex-direction: column; gap: 14px; flex: 1; padding-right: 16px;
+        }
+
+        .modal-title {
+            font-size: 1.35rem; color: var(--text); line-height: 1.25; text-transform: uppercase;
+        }
+
+        .modal-price {
+            font-size: 1.05rem; color: var(--yellow); letter-spacing: 1px;
+        }
+
+        .modal-desc {
+            font-size: 0.88rem; color: #A8A8A8; line-height: 1.6; margin-top: 4px;
+        }
+
+        @media (max-width: 680px) {
+            .modal-card { padding: 24px 20px; min-height: auto; }
+            .modal-body { flex-direction: column; gap: 18px; align-items: stretch; }
+            .modal-photo-slot { width: 100%; height: auto; aspect-ratio: 1 / 1; max-width: 280px; margin: 0 auto; }
+            .modal-title { font-size: 1.05rem; }
+            .modal-desc { font-size: 0.78rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <canvas id="petals-canvas"></canvas>
+
+    <div id="tv-screen">
+        <div class="channel-tag">CH-03 // AV</div>
+        <div class="gothic-logo">𝕮𝖑𝖔𝖘𝖊𝖉 𝕽𝖔𝖘𝖊<br>𝕮𝖑𝖚𝖇</div>
+        <button type="button" class="enter-btn" id="joinBtn">JOIN DA CLUB</button>
+    </div>
+
+    <div class="wrapper" id="catalog">
+        <header>
+           <div class="title">𝕮𝖑𝖔𝖘𝖊𝖉 𝕽𝖔𝖘𝖊 𝕮𝖑𝖚𝖇</div>
+            <div class="subtitle">OFFICIAL MARIA ROSE MERCH</div>
+            <span class="jp">未知の出現 • 2026</span>
+        </header>
+
+        <div class="list">
+            <div class="card" onclick="openItemModal(0)">
+                <div class="card-left">
+                    <div class="item-name">"UNKNOWN DISAPPEARANCE 2020" TEE</div>
+                    <div class="item-price">2 222 ₽</div>
+                </div>
+                <div class="status">SOLD OUT</div>
+            </div>
+
+            <div class="card" onclick="openItemModal(1)">
+                <div class="card-left">
+                    <div class="item-name">"UNKNOWN APPEARANCE 2026" TEE</div>
+                    <div class="item-price">2 222 ₽</div>
+                </div>
+                <div class="status">SOLD OUT</div>
+            </div>
+
+            <div class="card" onclick="openItemModal(2)">
+                <div class="card-left">
+                    <div class="item-name">DOUBLE-SIDED KEYCHAIN</div>
+                    <div class="item-price">333 ₽</div>
+                </div>
+                <div class="status">1 OF 1</div>
+            </div>
+
+            <div class="card" onclick="openItemModal(3)">
+                <div class="card-left">
+                    <div class="item-name">PINK FURRY BELT</div>
+                    <div class="item-price">OUT OF STOCK</div>
+                </div>
+                <div class="status yellow">ARCHIVED</div>
+            </div>
+        </div>
+
+                                <!-- Твои соцсети (сверху) -->
+        <div class="socials-section">
+            <div class="socials-label">OUR SOCIALS</div>
+            <div class="socials">
+                <a href="https://www.tiktok.com/@mariarosefanacc?_r=1&_t=ZS-9BRBUCxtDIA" target="_blank" rel="noopener noreferrer" class="social-link">[ TIKTOK ]</a>
+                <a href="ТВОЯ_ССЫЛКА_TELEGRAM" target="_blank" rel="noopener noreferrer" class="social-link">[ TELEGRAM ]</a>
+            </div>
+        </div>
+
+
+        <!-- Соцсети Maria Rose (ниже с заголовком) -->
+        <div class="socials-section">
+            <div class="socials-label">MARIA ROSE SOCIALS</div>
+            <div class="socials">
+                <a href="ССЫЛКА_MARIA_TIKTOK" target="_blank" rel="noopener noreferrer" class="social-link">[ TIKTOK ]</a>
+                <a href="ССЫЛКА_MARIA_TELEGRAM" target="_blank" rel="noopener noreferrer" class="social-link">[ TELEGRAM ]</a>
+            </div>
+        </div>
+
+        <footer>CLOSED ROSE CLUB © 2026</footer>
+
+    </div>
+
+    <div class="modal-overlay" id="itemModal" onclick="closeItemModal()">
+        <div class="modal-card" onclick="event.stopPropagation()">
+            <button type="button" class="modal-close" onclick="closeItemModal()">[X]</button>
+            <div class="modal-body">
+                <div class="modal-photo-slot" id="modalPhotoSlot" onclick="togglePhotoZoom(event)">
+                    <div class="photo-placeholder">PHOTO<br>1:1</div>
+                </div>
+                <div class="modal-info">
+                    <div class="modal-title" id="modalItemTitle"></div>
+                    <div class="modal-price" id="modalItemPrice"></div>
+                    <div class="modal-desc" id="modalItemDesc"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const itemsData = [
+            {
+                title: '"UNKNOWN DISAPPEARANCE" 2020 TEE',
+                price: '2 222 ₽ // SOLD OUT',
+                desc: 'Архивный дроп 2020. Плотный оверсайз-хлопок, свободный крой. Весь тираж выкуплен.',
+                photo: 'mariarose2020.png'
+            },
+            {
+                title: '"UNKNOWN APPEARANCE" 2026 TEE',
+                price: '2 222 ₽ // SOLD OUT',
+                desc: 'Лимитированный тираж 2026 года (3 экз.). Распределено исключительно среди ближнего круга.',
+                                photo: 'martit2026.png'
+            },
+            {
+                title: 'DOUBLE-SIDED KEYCHAIN',
+                price: '333 ₽ // 1 OF 1',
+                desc: 'Двусторонний 3D-стикер под эпоксидной линзой. Единственный экземпляр в частной коллекции.',
+                photo: ''
+            },
+            {
+                title: 'PINK FURRY BELT',
+                price: 'OUT OF STOCK // ARCHIVED',
+                desc: 'Легендарный розовый пушистый ремень. Безвозмездно передан законной владелице.',
+                photo: 'fur-belt.png'
+            }
+        ];
+
+                let isPhotoZoomed = false;
+
+        function openItemModal(index) {
+            const item = itemsData[index];
+            document.getElementById('modalItemTitle').innerText = item.title;
+            document.getElementById('modalItemPrice').innerText = item.price;
+            document.getElementById('modalItemDesc').innerText = item.desc;
+
+            const slot = document.getElementById('modalPhotoSlot');
+            isPhotoZoomed = false;
+            slot.classList.remove('zoomed');
+
+            if (item.photo) {
+                slot.innerHTML = '<img src="' + item.photo + '" id="zoomableImg" alt=""><button type="button" class="zoom-btn" id="zoomBtnLabel">[+ ZOOM]</button>';
+            } else {
+                slot.innerHTML = '<div class="photo-placeholder">PHOTO<br>1:1</div>';
+            }
+
+            document.getElementById('itemModal').classList.add('active');
+        }
+
+        function togglePhotoZoom(e) {
+            const img = document.getElementById('zoomableImg');
+            const btn = document.getElementById('zoomBtnLabel');
+            const slot = document.getElementById('modalPhotoSlot');
+            if (!img) return;
+
+            isPhotoZoomed = !isPhotoZoomed;
+            if (isPhotoZoomed) {
+                slot.classList.add('zoomed');
+                btn.innerText = '[- OUT]';
+                moveZoom(e);
+            } else {
+                slot.classList.remove('zoomed');
+                btn.innerText = '[+ ZOOM]';
+                img.style.transform = 'scale(1)';
+                img.style.transformOrigin = 'center center';
+            }
+        }
+
+        function moveZoom(e) {
+            if (!isPhotoZoomed) return;
+            const slot = document.getElementById('modalPhotoSlot');
+            const img = document.getElementById('zoomableImg');
+            if (!img) return;
+
+            const rect = slot.getBoundingClientRect();
+            const clientX = (e.touches && e.touches.length) ? e.touches[0].clientX : e.clientX;
+            const clientY = (e.touches && e.touches.length) ? e.touches[0].clientY : e.clientY;
+            const x = Math.max(0, Math.min(100, ((clientX - rect.left) / rect.width) * 100));
+            const y = Math.max(0, Math.min(100, ((clientY - rect.top) / rect.height) * 100));
+
+            img.style.transformOrigin = x + '% ' + y + '%';
+            img.style.transform = 'scale(2.2)';
+        }
+
+        document.getElementById('modalPhotoSlot').addEventListener('mousemove', moveZoom);
+        document.getElementById('modalPhotoSlot').addEventListener('touchmove', moveZoom, { passive: true });
+
+        function closeItemModal() {
+            isPhotoZoomed = false;
+            document.getElementById('itemModal').classList.remove('active');
+        }
+
+
+        document.getElementById('joinBtn').addEventListener('click', function() {
+            const tv = document.getElementById('tv-screen');
+            const catalog = document.getElementById('catalog');
+            tv.style.opacity = '0';
+            tv.style.pointerEvents = 'none';
+            setTimeout(function() {
+                tv.style.display = 'none';
+                catalog.classList.add('visible');
+            }, 300);
+        });
+
+        (function() {
+            const canvas = document.getElementById('petals-canvas');
+            const ctx = canvas.getContext('2d');
+            let w, h;
+
+            function resize() {
+                w = canvas.width = window.innerWidth;
+                h = canvas.height = window.innerHeight;
+            }
+            window.addEventListener('resize', resize);
+            resize();
+
+            const tags = ['#holydiva', '#diva', '#mystery', '#icon'];
+            const petals = [];
+            const words = [];
+
+            function createPetal(initial) {
+                return {
+                    x: Math.random() * w,
+                    y: initial ? Math.random() * h - h : -30 - Math.random() * 250,
+                    size: 7 + Math.random() * 7,
+                    speedY: 0.45 + Math.random() * 0.55,
+                    swaySpeed: 0.012 + Math.random() * 0.015,
+                    swayOffset: Math.random() * Math.PI * 2,
+                    rot: Math.random() * Math.PI * 2,
+                    rotSpeed: (Math.random() - 0.5) * 0.025,
+                    flip: Math.random() * Math.PI,
+                    flipSpeed: 0.02 + Math.random() * 0.02,
+                    color: Math.random() > 0.4 ? '#8A0312' : '#5C000A'
+                };
+            }
+
+            function createWord(initial) {
+                return {
+                    text: tags[Math.floor(Math.random() * tags.length)],
+                    x: 50 + Math.random() * Math.max(100, w - 100),
+                    y: initial ? -100 - Math.random() * h : -80 - Math.random() * 450,
+                    speedY: 0.35 + Math.random() * 0.35,
+                    swaySpeed: 0.008 + Math.random() * 0.01,
+                    swayOffset: Math.random() * Math.PI * 2,
+                    rot: (Math.random() - 0.5) * 0.2,
+                    rotSpeed: (Math.random() - 0.5) * 0.004,
+                    alpha: 0.65 + Math.random() * 0.2,
+                    color: Math.random() > 0.4 ? '#8A0312' : '#A60517'
+                };
+            }
+
+            for (let i = 0; i < 6; i++) petals.push(createPetal(true));
+            for (let i = 0; i < 2; i++) words.push(createWord(true));
+
+            function drawPetal(p) {
+                ctx.save();
+                ctx.translate(p.x, p.y);
+                ctx.rotate(p.rot);
+                ctx.scale(1, Math.max(0.25, Math.abs(Math.cos(p.flip))));
+                ctx.beginPath();
+                ctx.moveTo(0, -p.size);
+                ctx.bezierCurveTo(p.size * 0.9, -p.size * 0.8, p.size * 1.1, p.size * 0.6, 0, p.size);
+                ctx.bezierCurveTo(-p.size * 1.1, p.size * 0.6, -p.size * 0.9, -p.size * 0.8, 0, -p.size);
+                ctx.fillStyle = p.color;
+                ctx.globalAlpha = 0.72;
+                ctx.fill();
+                ctx.restore();
+            }
+
+            function drawWord(item) {
+                ctx.save();
+                ctx.translate(item.x, item.y);
+                ctx.rotate(item.rot);
+                ctx.font = 'italic 700 15px "Space Mono", monospace';
+                ctx.fillStyle = item.color;
+                ctx.globalAlpha = item.alpha;
+                ctx.textAlign = 'center';
+                ctx.fillText(item.text, 0, 0);
+                ctx.restore();
+            }
+
+            function loop() {
+                ctx.clearRect(0, 0, w, h);
+
+                for (let i = 0; i < petals.length; i++) {
+                    const p = petals[i];
+                    p.y += p.speedY;
+                    p.swayOffset += p.swaySpeed;
+                    p.x += Math.sin(p.swayOffset) * 0.65;
+                    p.rot += p.rotSpeed;
+                    p.flip += p.flipSpeed;
+                    drawPetal(p);
+                    if (p.y > h + 30) petals[i] = createPetal(false);
+                }
+
+                for (let i = 0; i < words.length; i++) {
+                    const item = words[i];
+                    item.y += item.speedY;
+                    item.swayOffset += item.swaySpeed;
+                    item.x += Math.sin(item.swayOffset) * 0.45;
+                    item.rot += item.rotSpeed;
+                    drawWord(item);
+                    if (item.y > h + 50) words[i] = createWord(false);
+                }
+
+                requestAnimationFrame(loop);
+            }
+            loop();
+        })();
+    </script>
+</body>
+</html>
