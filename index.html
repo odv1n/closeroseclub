@@ -152,6 +152,13 @@
         }
 
         .status.yellow { border-color: var(--yellow); color: var(--yellow); background: rgba(255, 230, 0, 0.08); }
+		        .status.orange {
+            border-color: #FF6B00;
+            color: #FF6B00;
+            background: rgba(255, 107, 0, 0.1);
+            box-shadow: 0 0 12px rgba(255, 107, 0, 0.15);
+        }
+
 		
         .socials-section {
             position: relative;
@@ -343,13 +350,13 @@
             <span class="jp">未知の出現 • 2026</span>
         </header>
 
-        <div class="list">
+                <div class="list">
             <div class="card" onclick="openItemModal(0)">
                 <div class="card-left">
                     <div class="item-name">"UNKNOWN DISAPPEARANCE 2020" TEE</div>
                     <div class="item-price">2 222 ₽</div>
                 </div>
-                <div class="status">SOLD OUT</div>
+                <div class="status orange">PRE-ORDER</div>
             </div>
 
             <div class="card" onclick="openItemModal(1)">
@@ -357,7 +364,7 @@
                     <div class="item-name">"UNKNOWN APPEARANCE 2026" TEE</div>
                     <div class="item-price">2 222 ₽</div>
                 </div>
-                <div class="status">SOLD OUT</div>
+                <div class="status orange">PRE-ORDER</div>
             </div>
 
             <div class="card" onclick="openItemModal(2)">
@@ -365,7 +372,7 @@
                     <div class="item-name">DOUBLE-SIDED KEYCHAIN</div>
                     <div class="item-price">333 ₽</div>
                 </div>
-                <div class="status">1 OF 1</div>
+                <div class="status orange">PRE-ORDER</div>
             </div>
 
             <div class="card" onclick="openItemModal(3)">
@@ -373,9 +380,10 @@
                     <div class="item-name">PINK FURRY BELT</div>
                     <div class="item-price">7777 ₽</div>
                 </div>
-                <div class="status yellow">ARCHIVED</div>
+                <div class="status">1 OF 1</div>
             </div>
         </div>
+
 
                                 <!-- Твои соцсети (сверху) -->
         <div class="socials-section">
@@ -420,25 +428,25 @@
         const itemsData = [
             {
                 title: '"UNKNOWN DISAPPEARANCE" 2020 TEE',
-                price: '2 222 ₽ // SOLD OUT',
+                price: '2 222 ₽ // PRE-ORDER',
                 desc: 'кто стоит за этим исчезновением? мы точно знать не можем.',
                 photo: 'mariarose2020.png'
             },
             {
                 title: '"UNKNOWN APPEARANCE" 2026 TEE',
-                price: '2 222 ₽ // SOLD OUT',
+                price: '2 222 ₽ // PRE-ORDER',
                 desc: 'прямой наследник, никто не знает историю его появления.',
                                 photo: 'martit2026.png'
             },
             {
                 title: 'DOUBLE-SIDED KEYCHAIN',
-                price: '333 ₽ // 1 OF 1',
+                price: '333 ₽ // PRE-ORDER',
                 desc: 'двусторонний 3D - стикер под эпоксидной линзой. единственный экземпляр в частной коллекции.',
                 photo: ''
             },
             {
                 title: 'PINK FURRY BELT',
-                price: 'OUT OF STOCK // ARCHIVED',
+                price: 'ARCHIVED // 1 OF 1',
                 desc: 'розовый пушистый ремень. надпись "CAUTION! extreme SWAG level" говорит за себя.',
                 photo: 'fur-belt.png'
             }
