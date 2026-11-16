@@ -675,7 +675,7 @@
             .modal-price { font-size: 0.9rem; }
             .modal-desc { font-size: 0.78rem; }
         }
-                  .marquee-bar {
+               .marquee-bar {
             position: fixed;
             top: 0;
             left: 0;
@@ -685,12 +685,11 @@
             padding: 8px 0;
             overflow: hidden;
             white-space: nowrap;
-            z-index: 250;
+            z-index: 999;
             pointer-events: none;
         }
 
-
-                      .marquee-track {
+        .marquee-track {
             display: inline-flex;
             width: max-content;
             font-size: 0.72rem;
@@ -706,6 +705,7 @@
             color: var(--yellow);
             text-shadow: 0 0 10px rgba(255, 230, 0, 0.45);
         }
+
 
 
         @keyframes marqueeScroll {
@@ -815,16 +815,19 @@
             display: inline-block;
             animation: bloodShimmer 3.6s ease-in-out infinite;
         }
-		
-                @media (max-width: 680px) {
+		        @media (max-width: 680px) {
             body {
-                align-items: flex-start;
-                padding-top: 52px;
+                align-items: flex-start !important;
+                padding-top: 56px !important;
             }
-            .wrapper, body.mode-mobile .wrapper, body.mode-pc .wrapper {
-                padding-top: 8px;
+            .wrapper,
+            body.mode-mobile .wrapper,
+            body.mode-pc .wrapper {
+                padding-top: 12px !important;
+                margin-top: 0 !important;
             }
         }
+
 
 
 </style>
