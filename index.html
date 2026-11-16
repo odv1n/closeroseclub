@@ -675,12 +675,20 @@
             .modal-price { font-size: 0.9rem; }
             .modal-desc { font-size: 0.78rem; }
         }
-          .marquee-bar {
-          position: fixed; top: 0; left: 0; width: 100%;
-          background: rgba(5, 5, 5, 0.92); border-bottom: 1px solid #1C1C1C;
-          padding: 7px 0; overflow: hidden; white-space: nowrap;
-          z-index: 250; pointer-events: none;
-      }
+                  .marquee-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: #050505;
+            border-bottom: 1px solid #1C1C1C;
+            padding: 8px 0;
+            overflow: hidden;
+            white-space: nowrap;
+            z-index: 250;
+            pointer-events: none;
+        }
+
 
                       .marquee-track {
             display: inline-flex;
@@ -808,15 +816,16 @@
             animation: bloodShimmer 3.6s ease-in-out infinite;
         }
 		
-        @media (max-width: 680px) {
+                @media (max-width: 680px) {
             body {
                 align-items: flex-start;
-                padding-top: 62px;
+                padding-top: 52px;
             }
             .wrapper, body.mode-mobile .wrapper, body.mode-pc .wrapper {
-                padding-top: 10px;
+                padding-top: 8px;
             }
         }
+
 
 </style>
 </head>
