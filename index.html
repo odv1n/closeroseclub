@@ -1398,6 +1398,16 @@
 
         const modeObserver = new MutationObserver(updateModeBtnLabel);
         modeObserver.observe(document.body, { attributes: true, attributeFilter: ['class'] });
+		
+        // Фиксируем положение розы в жестких пикселях при старте, чтобы она не прыгала при скрытии панели браузера на телефоне
+        function lockRosePosition() {
+            const rose = document.querySelector('.bg-watermark');
+            if (!rose) return;
+            rose.style.bottom = 'auto';
+            rose.style.top = Math.round((window.innerHeight - rose.offsetHeight) / 2) + 'px';
+        }
+        window.addEventListener('load', lockRosePosition);
+        window.addEventListener('orientationchange', () => setTimeout(lockRosePosition, 200));
 
     </script>
 </body>
