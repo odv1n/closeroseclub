@@ -357,6 +357,62 @@
             color: #FFFFFF;
             box-shadow: 0 0 18px rgba(217, 4, 22, 0.45);
         }
+        .order-form {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 10px;
+            width: 100%;
+        }
+
+        .size-selector {
+            display: flex;
+            gap: 8px;
+        }
+
+        .size-btn {
+            background: #121212;
+            border: 1px solid #2C2C2C;
+            color: #A8A8A8;
+            padding: 8px 14px;
+            font-family: 'Space Mono', monospace;
+            font-size: 0.75rem;
+            font-weight: 700;
+            font-style: italic;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .size-btn.active {
+            border-color: var(--yellow);
+            color: var(--yellow);
+            background: rgba(255, 230, 0, 0.08);
+        }
+
+        .tg-input {
+            background: #050505;
+            border: 1px solid #2C2C2C;
+            color: #FFFFFF;
+            padding: 10px 12px;
+            font-family: 'Space Mono', monospace;
+            font-size: 0.78rem;
+            font-weight: 700;
+            font-style: italic;
+            outline: none;
+            width: 100%;
+            max-width: 260px;
+        }
+
+        .tg-input:focus {
+            border-color: var(--yellow);
+        }
+
+        .order-status-msg {
+            font-size: 0.72rem;
+            color: var(--yellow);
+            letter-spacing: 1px;
+            min-height: 16px;
+        }
 
         @media (max-width: 680px) {
             .modal-card { padding: 24px 20px; min-height: auto; }
@@ -453,7 +509,16 @@
                     <div class="modal-title" id="modalItemTitle"></div>
                     <div class="modal-price" id="modalItemPrice"></div>
                     <div class="modal-desc" id="modalItemDesc"></div>
-				   <a href="ТВОЯ_ССЫЛКА_НА_TELEGRAM" target="_blank" rel="noopener noreferrer" class="order-btn" id="modalOrderBtn">[ ORDER IN TELEGRAM ]</a>
+				                       <div class="order-form" id="modalOrderForm">
+                        <div class="size-selector" id="sizeSelector">
+                            <button type="button" class="size-btn active" onclick="selectSize(this, 'M')">M</button>
+                            <button type="button" class="size-btn" onclick="selectSize(this, 'L')">L</button>
+                            <button type="button" class="size-btn" onclick="selectSize(this, 'XL')">XL</button>
+                        </div>
+                        <input type="text" class="tg-input" id="tgUsernameInput" placeholder="@твой_юзернейм в ТГ">
+                        <button type="button" class="order-btn" id="modalOrderBtn" onclick="sendOrderToTg()">[ PRE-ORDER NOW ]</button>
+                        <div class="order-status-msg" id="orderStatusMsg"></div>
+                    </div>
 
                 </div>
             </div>
@@ -505,16 +570,91 @@
             } else {
                 slot.innerHTML = '<div class="photo-placeholder">PHOTO<br>1:1</div>';
             }
+                        currentItemIndex = index;
+            selectedSize = 'M';
+            document.getElementById('orderStatusMsg').innerText = '';
+            document.getElementById('tgUsernameInput').value = '';
+
+            document.querySelectorAll('.size-btn').forEach((b, i) => b.classList.toggle('active', i === 0));
+
+            const sizeBox = document.getElementById('sizeSelector');
+            sizeBox.style.display = (index === 0 || index === 1) ? 'flex' : 'none';
+
             const orderBtn = document.getElementById('modalOrderBtn');
             if (index === 3) {
                 orderBtn.innerText = '[ REQUEST ITEM ]';
                 orderBtn.classList.add('red');
             } else {
-                orderBtn.innerText = '[ ORDER IN TELEGRAM ]';
+                orderBtn.innerText = '[ PRE-ORDER NOW ]';
                 orderBtn.classList.remove('red');
             }
 
             document.getElementById('itemModal').classList.add('active');
+        }
+        let currentItemIndex = 0;
+        let selectedSize = 'M';
+
+        function selectSize(btn, size) {
+            selectedSize = size;
+            document.querySelectorAll('.size-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+        }
+
+        function sendOrderToTg() {
+            const tgUser = document.getElementById('tgUsernameInput').value.trim();
+            const statusEl = document.getElementById('orderStatusMsg');
+            const btn = document.getElementById('modalOrderBtn');
+
+            if (!tgUser) {
+                statusEl.style.color = '#D90416';
+                statusEl.innerText = 'ВВЕДИ СВОЙ @USERNAME В TELEGRAM';
+                return;
+            }
+
+            const item = itemsData[currentItemIndex];
+            const sizeText = (currentItemIndex === 0 || currentItemIndex === 1) ? `\n📏 Размер: ${selectedSize}` : '';
+            const cleanUser = tgUser.startsWith('@') ? tgUser : '@' + tgUser;
+
+            const message = `🥀 НОВАЯ ЗАЯВКА // CLOSED ROSE CLUB\n\n` +
+                            `📦 Айтем: ${item.title}\n` +
+                            `💰 Прайс: ${item.price}` +
+                            `${sizeText}\n` +
+                            `👤 Клиент: ${cleanUser}`;
+
+            // ВСТАВЬ СЮДА СВОИ ДАННЫЕ ИЗ TELEGRAM:
+            const BOT_TOKEN = '9291757857:AAGLYg-b83ulx1oreeNI0cTXPLunZRU3WUs';
+            const MY_CHAT_ID = '7719874790';
+
+            btn.innerText = 'ОТПРАВКА...';
+            btn.disabled = true;
+
+            fetch(`https://telegram.org{BOT_TOKEN}/sendMessage`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    chat_id: MY_CHAT_ID,
+                    text: message
+                })
+            })
+            .then(res => res.json())
+            .then(data => {
+                if (data.ok) {
+                    statusEl.style.color = '#FFE600';
+                    statusEl.innerText = 'ЗАЯВКА ОТПРАВЛЕНА // СКОРО НАПИШУ В ТГ';
+                    btn.innerText = '[ SENT ✓ ]';
+                } else {
+                    statusEl.style.color = '#D90416';
+                    statusEl.innerText = 'ОШИБКА ОТПРАВКИ // ПРОВЕРЬ ТОКЕН';
+                    btn.innerText = '[ TRY AGAIN ]';
+                }
+                btn.disabled = false;
+            })
+            .catch(() => {
+                statusEl.style.color = '#D90416';
+                statusEl.innerText = 'ОШИБКА СЕТИ // ПОПРОБУЙ ЕЩЕ РАЗ';
+                btn.innerText = '[ TRY AGAIN ]';
+                btn.disabled = false;
+            });
         }
 
         function togglePhotoZoom(e) {
