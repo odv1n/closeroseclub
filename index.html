@@ -4,6 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>𝕮𝖑𝖔𝖘𝖊𝖉 𝕽𝖔𝖘𝖊 𝕮𝖑𝖚𝖇</title>
+	    <meta name="description" content="UNKNOWN (DIS)APPEARANCE COLLECTION // PRIVATE ARCHIVE // LIMITED RUN">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Closed Rose Club // UNKNOWN (DIS)APPEARANCE">
+    <meta property="og:description" content="OFFICIAL MARIA ROSE MERCH // PRIVATE ARCHIVE // NO RESTOCK // ELECTROSTAL - MOSCOW">
+    <meta property="og:image" content="roselogo.gif">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Closed Rose Club // UNKNOWN (DIS)APPEARANCE">
+    <meta name="twitter:description" content="PRIVATE ARCHIVE // LIMITED RUN // NO RESTOCK">
+    <meta name="twitter:image" content="roselogo.gif">
+
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://w3.org viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2216%22 fill=%22%23050505%22/><text x=%2250%22 y=%2276%22 font-size=%2272%22 text-anchor=%22middle%22 fill=%22%23FFE600%22>𝕮</text></svg>">
     <style>
         @import url('https://googleapis.com');
@@ -706,6 +716,20 @@
             text-shadow: 0 0 10px rgba(255, 230, 0, 0.45);
         }
 
+        .marquee-collection {
+            animation: collectionRedBlink 8s infinite;
+        }
+
+        @keyframes collectionRedBlink {
+            0%, 84%, 88%, 92%, 100% {
+                color: #B8B8B8;
+                text-shadow: none;
+            }
+            86%, 90% {
+                color: #FF1E38;
+                text-shadow: 0 0 12px rgba(255, 30, 56, 0.75);
+            }
+        }
 
 
         @keyframes marqueeScroll {
@@ -718,7 +742,7 @@
         }
        
 
-                .bg-watermark {
+                        .bg-watermark {
             position: fixed;
             top: 50%;
             left: 50%;
@@ -730,10 +754,11 @@
             pointer-events: none;
             user-select: none;
             z-index: 10;
-            opacity: 0.22;
-            filter: contrast(150%) brightness(1.1);
+            opacity: 0.30;
+            filter: contrast(165%) brightness(1.15);
             animation: chromeFloat 12s ease-in-out infinite alternate;
         }
+
 
         .bg-watermark svg {
             width: 100%;
@@ -827,45 +852,144 @@
                 margin-top: 0 !important;
             }
         }
+		        .drop-timer-box {
+            margin: 14px auto 22px;
+            padding: 10px 18px;
+            border: 1px solid #242424;
+            background: rgba(8, 8, 8, 0.75);
+            display: inline-flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+            position: relative;
+        }
 
+        .drop-timer-label {
+            font-size: 0.65rem;
+            color: var(--gray);
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
 
+        .drop-timer-digits {
+            font-size: 1.15rem;
+            font-weight: 700;
+            font-style: italic;
+            color: #FF1E38;
+            letter-spacing: 3px;
+            text-shadow: 0 0 12px rgba(255, 30, 56, 0.45);
+        }
+
+        .timer-colon {
+            animation: colonBlink 1s steps(1) infinite;
+        }
+
+        @keyframes colonBlink {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0.2; }
+        }
+        .mode-switcher-btn {
+            position: fixed;
+            bottom: 16px;
+            right: 16px;
+            z-index: 260;
+            background: rgba(8, 8, 8, 0.88);
+            border: 1px solid #333333;
+            color: #999999;
+            font-family: 'Space Mono', monospace;
+            font-size: 0.68rem;
+            font-weight: 700;
+            font-style: italic;
+            letter-spacing: 2px;
+            padding: 7px 12px;
+            cursor: pointer;
+            transition: 0.2s ease;
+            display: none;
+        }
+
+        body.mode-pc .mode-switcher-btn,
+        body.mode-mobile .mode-switcher-btn {
+            display: block;
+        }
+
+        .mode-switcher-btn:hover {
+            border-color: #FF1E38;
+            color: #FF1E38;
+            box-shadow: 0 0 14px rgba(255, 30, 56, 0.25);
+        }
 
 </style>
 </head>
 <body>
-        <div class="bg-watermark">
+           <div class="bg-watermark">
         <svg viewBox="0 0 400 400" xmlns="http://w3.org">
             <defs>
+                <!-- Переливающийся градиент с движущимся световым бликом -->
                 <linearGradient id="chromeGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" stop-color="#111111" />
-                    <stop offset="22%" stop-color="#E8ECEF" />
-                    <stop offset="35%" stop-color="#2B2E33" />
-                    <stop offset="52%" stop-color="#FFFFFF" />
-                    <stop offset="68%" stop-color="#1A1C20" />
-                    <stop offset="85%" stop-color="#B8C0C8" />
-                    <stop offset="100%" stop-color="#0A0A0A" />
+                    <stop offset="0%" stop-color="#0B0D12" />
+                    <stop offset="25%" stop-color="#6E7A8A" />
+                    <stop offset="42%" stop-color="#FFFFFF" />
+                    <stop offset="50%" stop-color="#DCE8FF" />
+                    <stop offset="58%" stop-color="#FFFFFF" />
+                    <stop offset="75%" stop-color="#22262E" />
+                    <stop offset="100%" stop-color="#08090C" />
+                    <animateTransform 
+                        attributeName="gradientTransform" 
+                        type="rotate" 
+                        from="0 0.5 0.5" 
+                        to="360 0.5 0.5" 
+                        dur="9s" 
+                        repeatCount="indefinite" />
                 </linearGradient>
-                <filter id="liquidMetal">
-                    <feTurbulence type="fractalNoise" baseFrequency="0.015" numOctaves="3" seed="4" result="noise" />
-                    <feDisplacementMap in="SourceGraphic" in2="noise" scale="38" xChannelSelector="R" yChannelSelector="G" />
+
+                <!-- Жидкий металл + реальный зеркальный блик от источника света -->
+                <filter id="liquidMetal" x="-25%" y="-25%" width="150%" height="150%">
+                    <feTurbulence type="fractalNoise" baseFrequency="0.014" numOctaves="3" seed="4" result="noise" />
+                    <feDisplacementMap in="SourceGraphic" in2="noise" scale="28" xChannelSelector="R" yChannelSelector="G" result="displaced" />
+                    
+                    <feGaussianBlur in="displaced" stdDeviation="2.2" result="blurSurface" />
+                    <feSpecularLighting in="blurSurface" surfaceScale="5" specularConstant="1.25" specularExponent="28" lighting-color="#E6F0FF" result="specular">
+                        <fePointLight x="200" y="120" z="140">
+                            <animate attributeName="x" values="80;320;240;80" dur="8s" repeatCount="indefinite" />
+                            <animate attributeName="y" values="90;160;310;90" dur="8s" repeatCount="indefinite" />
+                        </fePointLight>
+                    </feSpecularLighting>
+                    <feComposite in="specular" in2="displaced" operator="in" result="clippedSpecular" />
+                    <feBlend in="displaced" in2="clippedSpecular" mode="screen" />
                 </filter>
             </defs>
+
             <g filter="url(#liquidMetal)">
-                <path d="M200,45 C275,45 345,95 350,175 C355,255 295,345 205,350 C115,355 50,280 55,190 C60,100 125,45 200,45 Z" fill="none" stroke="url(#chromeGrad)" stroke-width="26" />
-                <path d="M200,95 C255,95 295,140 295,195 C295,250 250,305 195,305 C140,305 100,255 105,195 C110,135 145,95 200,95 Z" fill="none" stroke="url(#chromeGrad)" stroke-width="14" opacity="0.85" />
-                <circle cx="200" cy="200" r="42" fill="url(#chromeGrad)" opacity="0.7" />
+                <!-- Острые металлические шипы и чашелистики по внешнему радиусу -->
+                <path d="M200,88 L216,18 L234,94 Z" fill="url(#chromeGrad)" />
+                <path d="M282,126 L354,68 L302,152 Z" fill="url(#chromeGrad)" />
+                <path d="M308,212 L386,232 L302,248 Z" fill="url(#chromeGrad)" />
+                <path d="M262,292 L314,368 L236,306 Z" fill="url(#chromeGrad)" />
+                <path d="M162,306 L112,374 L136,288 Z" fill="url(#chromeGrad)" />
+                <path d="M96,242 L16,222 L98,204 Z" fill="url(#chromeGrad)" />
+                <path d="M104,148 L48,74 L126,122 Z" fill="url(#chromeGrad)" />
+
+                <!-- Внешние лепестки розы -->
+                <path d="M200,72 C275,72 332,120 332,195 C332,272 272,326 198,326 C122,326 68,268 68,195 C68,122 125,72 200,72 Z" fill="none" stroke="url(#chromeGrad)" stroke-width="22" />
+                
+                <!-- Внутренние лепестки со спиральным завитком бутона -->
+                <path d="M200,114 C248,114 282,148 282,196 C282,244 244,282 196,282 C150,282 118,246 122,196 C126,154 162,130 202,134 C236,138 254,166 248,198 C242,226 216,242 190,236" fill="none" stroke="url(#chromeGrad)" stroke-width="14" stroke-linecap="round" opacity="0.92" />
+                
+                <!-- Сердцевина бутона -->
+                <circle cx="200" cy="195" r="24" fill="url(#chromeGrad)" opacity="0.85" />
             </g>
         </svg>
     </div>
 
+
     <canvas id="petals-canvas"></canvas>
          <div class="marquee-bar">
         <div class="marquee-track">
-                       <span>CLOSED ROSE CLUB // PRIVATE ARCHIVE // LIMITED RUN // NO RESTOCK // <b class="marquee-city">ELECTROSTAL - MOSCOW</b> // CLOSED ROSE CLUB // PRIVATE ARCHIVE // LIMITED RUN // NO RESTOCK // <b class="marquee-city">ELECTROSTAL - MOSCOW</b> //</span>
-            <span>CLOSED ROSE CLUB // PRIVATE ARCHIVE // LIMITED RUN // NO RESTOCK // <b class="marquee-city">ELECTROSTAL - MOSCOW</b> // CLOSED ROSE CLUB // PRIVATE ARCHIVE // LIMITED RUN // NO RESTOCK // <b class="marquee-city">ELECTROSTAL - MOSCOW</b> //</span>
+             <span>CLOSED ROSE CLUB // <b class="marquee-collection">UNKNOWN (DIS)APPEARANCE COLLECTION</b> // LIMITED RUN // NO RESTOCK // <b class="marquee-city">ELECTROSTAL - MOSCOW</b> // CLOSED ROSE CLUB // <b class="marquee-collection">UNKNOWN (DIS)APPEARANCE COLLECTION</b> // LIMITED RUN // NO RESTOCK // <b class="marquee-city">ELECTROSTAL - MOSCOW</b> //</span>
+            <span>CLOSED ROSE CLUB // <b class="marquee-collection">UNKNOWN (DIS)APPEARANCE COLLECTION</b> // LIMITED RUN // NO RESTOCK // <b class="marquee-city">ELECTROSTAL - MOSCOW</b> // CLOSED ROSE CLUB // <b class="marquee-collection">UNKNOWN (DIS)APPEARANCE COLLECTION</b> // LIMITED RUN // NO RESTOCK // <b class="marquee-city">ELECTROSTAL - MOSCOW</b> //</span>
         </div>
     </div>
-
+    <button class="mode-switcher-btn" id="modeSwitcherBtn" onclick="toggleViewMode()">[ VIEW: PC ]</button>
         <div id="tv-screen">
         <div class="gothic-logo">𝕮𝖑𝖔𝖘𝖊𝖉 𝕽𝖔𝖘𝖊<br>𝕮𝖑𝖚𝖇</div>
         <div class="join-label">JOIN CLUB VIA:</div>
@@ -877,11 +1001,16 @@
 
 
     <div class="wrapper" id="catalog">
-        <header>
- <div class="title">𝕮𝖑𝖔𝖘𝖊𝖉 𝕽𝖔𝖘𝖊 𝕮𝖑𝖚𝖇</div>
-            <div class="subtitle">OFFICIAL MARIA ROSE MERCH</div>
-            <span class="jp">未知の出現 • 2026</span>
-        </header>
+                    <header>
+                <div class="title">𝕮𝖑𝖔𝖘𝖊𝖉 𝕽𝖔𝖘𝖊 𝕮𝖑𝖚𝖇</div>
+                <div class="subtitle">OFFICIAL MARIA ROSE MERCH</div>
+                <span class="jp">未知の出現 • 2026</span>
+                <div class="drop-timer-box">
+                                    <div class="drop-timer-label">DROP // "UNKNOWN (DIS)APPEARANCE" COLLECTION IN:</div>
+                    <div class="drop-timer-digits" id="dropTimer">00<span class="timer-colon">:</span>00<span class="timer-colon">:</span>00<span class="timer-colon">:</span>00</div>
+                </div>
+            </header>
+
 
         <div class="list">
             <div class="card" onclick="openItemModal(0)">
@@ -1002,7 +1131,7 @@
                 title: 'DOUBLE-SIDED KEYCHAIN',
               price: '333 ₽ // IN STOCK',
                 desc: 'двусторонний брелок покрытый эпоксидной смолой. единственный экземпляр в частной коллекции.',
-                photo: ''
+                photo: 'keychain.png'
             },
             {
                 title: 'PINK FURRY BELT',
@@ -1225,6 +1354,49 @@
                 }, 350);
             }
         }
+        // Укажи дату и время дропа (Год-Месяц-ДеньTЧасы:Минуты:Секунды)
+                const dropTargetDate = new Date('2027-01-01T00:00:00+03:00').getTime();
+        function updateDropTimer() {
+            const timerEl = document.getElementById('dropTimer');
+            if (!timerEl) return;
+
+            const now = new Date().getTime();
+            const diff = dropTargetDate - now;
+
+            if (diff <= 0) {
+                timerEl.innerHTML = 'ARCHIVE OPEN // LIVE';
+                return;
+            }
+
+            const days = String(Math.floor(diff / (1000 * 60 * 60 * 24))).padStart(2, '0');
+            const hours = String(Math.floor((diff / (1000 * 60 * 60)) % 24)).padStart(2, '0');
+            const minutes = String(Math.floor((diff / 1000 / 60) % 60)).padStart(2, '0');
+            const seconds = String(Math.floor((diff / 1000) % 60)).padStart(2, '0');
+
+            timerEl.innerHTML = `${days}<span class="timer-colon">:</span>${hours}<span class="timer-colon">:</span>${minutes}<span class="timer-colon">:</span>${seconds}`;
+        }
+
+        updateDropTimer();
+        setInterval(updateDropTimer, 1000);
+        function updateModeBtnLabel() {
+            const btn = document.getElementById('modeSwitcherBtn');
+            if (!btn) return;
+            btn.textContent = document.body.classList.contains('mode-pc') ? '[ VIEW: PC ]' : '[ VIEW: MOBILE ]';
+        }
+
+        function toggleViewMode() {
+            if (document.body.classList.contains('mode-pc')) {
+                document.body.classList.remove('mode-pc');
+                document.body.classList.add('mode-mobile');
+            } else {
+                document.body.classList.remove('mode-mobile');
+                document.body.classList.add('mode-pc');
+            }
+            updateModeBtnLabel();
+        }
+
+        const modeObserver = new MutationObserver(updateModeBtnLabel);
+        modeObserver.observe(document.body, { attributes: true, attributeFilter: ['class'] });
 
     </script>
 </body>
