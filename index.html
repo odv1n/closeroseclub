@@ -282,21 +282,143 @@
             .modal-price { font-size: 0.9rem; }
             .modal-desc { font-size: 0.78rem; }
         }
-    </style>
+          .marquee-bar {
+          position: fixed; top: 0; left: 0; width: 100%;
+          background: rgba(5, 5, 5, 0.92); border-bottom: 1px solid #1C1C1C;
+          padding: 7px 0; overflow: hidden; white-space: nowrap;
+          z-index: 250; pointer-events: none;
+      }
+
+                      .marquee-track {
+            display: inline-flex;
+            width: max-content;
+            font-size: 0.72rem;
+            font-weight: 700;
+            font-style: italic;
+            color: #B8B8B8;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            animation: marqueeScroll 34s linear infinite;
+        }
+
+        .marquee-city {
+            color: var(--yellow);
+            text-shadow: 0 0 10px rgba(255, 230, 0, 0.45);
+        }
+
+
+        @keyframes marqueeScroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+        body.glitch-flash {
+            filter: invert(1) hue-rotate(180deg);
+            transition: filter 0.08s steps(2);
+        }
+        body {
+            background-image: 
+                radial-gradient(circle at center, transparent 20%, #000000 85%),
+                linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+            background-size: 100% 100%, 42px 42px, 42px 42px;
+            background-position: center center;
+        }
+
+        .bg-watermark {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-family: "Times New Roman", Times, Georgia, serif;
+            font-style: normal;
+            font-size: 28vw;
+            color: rgba(255, 255, 255, 0.022);
+            pointer-events: none;
+            user-select: none;
+            z-index: 10;
+            white-space: nowrap;
+        }
+                #tv-screen::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: repeating-linear-gradient(
+                0deg,
+                rgba(0, 0, 0, 0.42) 0px,
+                rgba(0, 0, 0, 0.42) 2px,
+                transparent 2px,
+                transparent 4px
+            );
+            pointer-events: none;
+            z-index: 105;
+        }
+
+        #tv-screen::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: 
+                radial-gradient(circle, transparent 40%, rgba(0, 0, 0, 0.82) 100%),
+                repeating-radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.06) 0px, rgba(0, 0, 0, 0.08) 2px, transparent 3px);
+            background-size: 100% 100%, 6px 6px;
+            animation: crtNoiseFlicker 0.1s infinite alternate;
+            pointer-events: none;
+            z-index: 106;
+        }
+
+        @keyframes crtNoiseFlicker {
+            0% { opacity: 0.65; transform: translate(0, 0); }
+            50% { opacity: 0.95; transform: translate(-1px, 1px); }
+            100% { opacity: 0.8; transform: translate(1px, -1px); }
+        }
+
+        @keyframes bloodShimmer {
+            0% {
+                background-position: 0% 50%;
+                filter: drop-shadow(0 0 12px rgba(217, 4, 22, 0.45));
+            }
+            50% {
+                background-position: 100% 50%;
+                filter: drop-shadow(0 0 24px rgba(217, 4, 22, 0.85));
+            }
+            100% {
+                background-position: 0% 50%;
+                filter: drop-shadow(0 0 12px rgba(217, 4, 22, 0.45));
+            }
+        }
+
+        .blood-rose {
+            background: linear-gradient(90deg, #5C000A, #D90416, #FF1E38, #8A0312, #5C000A);
+            background-size: 250% auto;
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            color: transparent;
+            display: inline-block;
+            animation: bloodShimmer 3.6s ease-in-out infinite;
+        }
+
+</style>
 </head>
 <body>
-
+    <div class="bg-watermark">𝕮𝕽𝕮</div>
     <canvas id="petals-canvas"></canvas>
+         <div class="marquee-bar">
+        <div class="marquee-track">
+            <span>CLOSED ROSE CLUB // PRIVATE ARCHIVE // LIMITED RUN // NO RESTOCK // <b class="marquee-city">ELECTROSTAL — MOSCOW</b> // &nbsp;&nbsp;&nbsp; CLOSED ROSE CLUB // PRIVATE ARCHIVE // LIMITED RUN // NO RESTOCK // <b class="marquee-city">ELECTROSTAL — MOSCOW</b> // &nbsp;&nbsp;&nbsp; CLOSED ROSE CLUB // PRIVATE ARCHIVE // LIMITED RUN // NO RESTOCK // <b class="marquee-city">ELECTROSTAL — MOSCOW</b> // &nbsp;&nbsp;&nbsp; CLOSED ROSE CLUB // PRIVATE ARCHIVE // LIMITED RUN // NO RESTOCK // <b class="marquee-city">ELECTROSTAL — MOSCOW</b> // &nbsp;&nbsp;&nbsp;</span>
+            <span>CLOSED ROSE CLUB // PRIVATE ARCHIVE // LIMITED RUN // NO RESTOCK // <b class="marquee-city">ELECTROSTAL — MOSCOW</b> // &nbsp;&nbsp;&nbsp; CLOSED ROSE CLUB // PRIVATE ARCHIVE // LIMITED RUN // NO RESTOCK // <b class="marquee-city">ELECTROSTAL — MOSCOW</b> // &nbsp;&nbsp;&nbsp; CLOSED ROSE CLUB // PRIVATE ARCHIVE // LIMITED RUN // NO RESTOCK // <b class="marquee-city">ELECTROSTAL — MOSCOW</b> // &nbsp;&nbsp;&nbsp; CLOSED ROSE CLUB // PRIVATE ARCHIVE // LIMITED RUN // NO RESTOCK // <b class="marquee-city">ELECTROSTAL — MOSCOW</b> // &nbsp;&nbsp;&nbsp;</span>
+        </div>
+    </div>
 
     <div id="tv-screen">
-        <div class="channel-tag">CH-03 // AV</div>
-        <div class="gothic-logo">𝕮𝖑𝖔𝖘𝖊𝖉 𝕽𝖔𝖘𝖊<br>𝕮𝖑𝖚𝖇</div>
+                <div class="gothic-logo">𝕮𝖑𝖔𝖘𝖊𝖉 <span class="blood-rose">𝕽𝖔𝖘𝖊</span><br>𝕮𝖑𝖚𝖇</div>
         <button type="button" class="enter-btn" id="joinBtn">JOIN DA CLUB</button>
     </div>
 
     <div class="wrapper" id="catalog">
         <header>
-            <div class="title">𝕮𝖑𝖔𝖘𝖊𝖉 𝕽𝖔𝖘𝖊 𝕮𝖑𝖚𝖇</div>
+                                   <div class="title">𝕮𝖑𝖔𝖘𝖊𝖉 <span class="blood-rose">𝕽𝖔𝖘𝖊</span> 𝕮𝖑𝖚𝖇</div>
+
             <div class="subtitle">OFFICIAL MARIA ROSE MERCH</div>
             <span class="jp">未知の出現 • 2026</span>
         </header>
@@ -588,6 +710,24 @@
             }
             loop();
         })();
+		        let titleClicks = 0;
+        let clickTimer = null;
+
+        function handleSecretClick() {
+            titleClicks++;
+            clearTimeout(clickTimer);
+            clickTimer = setTimeout(() => { titleClicks = 0; }, 1200);
+
+            if (titleClicks === 3) {
+                titleClicks = 0;
+                document.body.style.filter = 'invert(1)';
+                setTimeout(() => {
+                    document.body.style.filter = 'none';
+                    alert('SECRET CODE: ROSE26 // НАПИШИ ЕГО В ТГ ДЛЯ ПРИОРИТЕТА');
+                }, 350);
+            }
+        }
+
     </script>
 </body>
 </html>
