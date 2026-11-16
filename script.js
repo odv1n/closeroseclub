@@ -26,7 +26,7 @@ const itemsData = [
         photo: 'assets/martit2026.png'
     },
         {
-        title: 'DOUBLE-SIDED KEYCHAIN',
+        title: '"MISSING" DOUBLE-SIDED KEYCHAIN',
         price: '333 ₽ // IN STOCK',
         desc: 'двусторонний брелок покрытый эпоксидной смолой. единственный экземпляр в частной коллекции.',
         photo: 'assets/keychain1.png',
