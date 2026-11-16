@@ -228,8 +228,9 @@
         }
 
         /* Режим Mobile — компактный узкий интерфейс */
-        body.mode-mobile .wrapper {
+                body.mode-mobile .wrapper {
             max-width: 420px;
+            padding-top: 48px;
         }
 
         body.mode-mobile .title {
@@ -805,6 +806,16 @@
             color: transparent;
             display: inline-block;
             animation: bloodShimmer 3.6s ease-in-out infinite;
+        }
+		
+        @media (max-width: 680px) {
+            body {
+                align-items: flex-start;
+                padding-top: 62px;
+            }
+            .wrapper, body.mode-mobile .wrapper, body.mode-pc .wrapper {
+                padding-top: 10px;
+            }
         }
 
 </style>
