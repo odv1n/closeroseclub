@@ -29,8 +29,8 @@ const itemsData = [
         title: 'DOUBLE-SIDED KEYCHAIN',
         price: '333 ₽ // IN STOCK',
         desc: 'двусторонний брелок покрытый эпоксидной смолой. единственный экземпляр в частной коллекции.',
-        photo: 'assets/keychain.png',
-        photoBack: 'assets/keychain-back.png'
+        photo: 'assets/keychain1.png',
+        photoBack: 'assets/keychain2.png'
     },
 
     {
