@@ -4,8 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>𝕮𝖑𝖔𝖘𝖊𝖉 𝕽𝖔𝖘𝖊 𝕮𝖑𝖚𝖇</title>
-	<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://w3.org viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🥀</text></svg>">
-
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://w3.org viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2216%22 fill=%22%23050505%22/><text x=%2250%22 y=%2276%22 font-size=%2272%22 text-anchor=%22middle%22 fill=%22%23FFE600%22>𝕮</text></svg>">
     <style>
         @import url('https://googleapis.com');
 
@@ -61,24 +60,18 @@
 
         .channel-tag { position: absolute; top: 24px; right: 24px; font-size: 0.72rem; color: #444444; letter-spacing: 2px; }
 
-                @keyframes neonPulse {
-            0%, 100% {
-                text-shadow: 0 0 18px rgba(255, 230, 0, 0.25), 0 0 38px rgba(255, 230, 0, 0.12);
-            }
-            50% {
-                text-shadow: 0 0 28px rgba(255, 230, 0, 0.65), 0 0 56px rgba(255, 230, 0, 0.35);
-            }
+        @keyframes neonPulse {
+            0%, 100% { text-shadow: 0 0 18px rgba(255, 230, 0, 0.25), 0 0 38px rgba(255, 230, 0, 0.12); }
+            50% { text-shadow: 0 0 28px rgba(255, 230, 0, 0.65), 0 0 56px rgba(255, 230, 0, 0.35); }
         }
 
         .gothic-logo {
             font-family: "Times New Roman", Times, Georgia, serif; font-style: normal;
             font-size: 3.1rem; font-weight: 400; color: var(--yellow); letter-spacing: 1px;
-            line-height: 1.15; margin-bottom: 42px;
+            line-height: 1.15; margin-bottom: 36px;
             animation: neonPulse 3.2s infinite ease-in-out;
             position: relative; z-index: 130;
         }
-
-
         @keyframes glitchHover {
             0% { transform: translate(0) skewX(0deg); text-shadow: none; box-shadow: none; }
             15% { transform: translate(-4px, 1px) skewX(-6deg); text-shadow: 3px 0 #00F0FF, -3px 0 #FF003C; box-shadow: -3px 0 0 #00F0FF, 3px 0 0 #FF003C; }
@@ -111,13 +104,12 @@
 
         header { text-align: center; margin-bottom: 32px; padding-bottom: 22px; border-bottom: 1px solid var(--border); }
 
-                .title {
+        .title {
             font-family: "Times New Roman", Times, Georgia, serif; font-style: normal;
             font-size: 2.15rem; font-weight: 400; color: var(--yellow); letter-spacing: 1px;
             line-height: 1.15; margin-bottom: 12px;
             animation: neonPulse 3.2s infinite ease-in-out;
         }
-
 
         .subtitle {
             display: inline-block; font-size: 0.68rem; font-weight: 700; font-style: italic;
@@ -140,7 +132,6 @@
             border-color: var(--yellow); background: #101010;
             animation: glitchHover 0.3s steps(2) 1;
         }
-
         .card-left { display: flex; flex-direction: column; gap: 5px; }
         .item-name { font-size: 0.82rem; font-weight: 700; font-style: italic; color: var(--text); letter-spacing: 0.4px; text-transform: uppercase; line-height: 1.3; }
         .item-price { font-size: 0.8rem; font-weight: 700; font-style: italic; color: #A8A8A8; letter-spacing: 0.5px; }
@@ -152,64 +143,43 @@
         }
 
         .status.yellow { border-color: var(--yellow); color: var(--yellow); background: rgba(255, 230, 0, 0.08); }
-		        .status.orange {
-            border-color: #FF6B00;
-            color: #FF6B00;
-            background: rgba(255, 107, 0, 0.1);
+
+        .status.orange {
+            border-color: #FF6B00; color: #FF6B00; background: rgba(255, 107, 0, 0.1);
             box-shadow: 0 0 12px rgba(255, 107, 0, 0.15);
         }
+        .status.green {
+            border-color: #00FF66;
+            color: #00FF66;
+            background: rgba(0, 255, 102, 0.1);
+            box-shadow: 0 0 12px rgba(0, 255, 102, 0.15);
+        }
 
-		
         .socials-section {
-            position: relative;
-            z-index: 200;
-            margin-top: 28px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+            position: relative; z-index: 200; margin-top: 28px;
+            display: flex; flex-direction: column; align-items: center;
         }
 
         .socials-label {
-            font-size: 0.65rem;
-            font-weight: 700;
-            font-style: italic;
-            color: var(--gray);
-            letter-spacing: 2.5px;
-            text-transform: uppercase;
-            margin-bottom: 10px;
+            font-size: 0.65rem; font-weight: 700; font-style: italic;
+            color: var(--gray); letter-spacing: 2.5px; text-transform: uppercase; margin-bottom: 10px;
         }
 
-        .socials {
-            display: flex;
-            justify-content: center;
-            gap: 12px;
-        }
+        .socials { display: flex; justify-content: center; gap: 12px; }
 
         .social-link {
-            display: inline-block;
-            background: var(--card);
-            border: 1px solid var(--border);
-            color: #A8A8A8;
-            text-decoration: none;
-            font-size: 0.72rem;
-            font-weight: 700;
-            font-style: italic;
-            letter-spacing: 2px;
-            padding: 9px 18px;
-            text-transform: uppercase;
-            cursor: pointer;
-            transition: border-color 0.2s ease, color 0.2s ease;
+            display: inline-block; background: var(--card); border: 1px solid var(--border);
+            color: #A8A8A8; text-decoration: none; font-size: 0.72rem; font-weight: 700;
+            font-style: italic; letter-spacing: 2px; padding: 9px 18px; text-transform: uppercase;
+            cursor: pointer; transition: border-color 0.2s ease, color 0.2s ease;
         }
 
         .social-link:hover, .social-link:active {
-            border-color: var(--yellow);
-            color: var(--yellow);
+            border-color: var(--yellow); color: var(--yellow);
             animation: glitchHover 0.3s steps(2) 1;
         }
 
         footer { text-align: center; margin-top: 32px; font-size: 0.65rem; font-weight: 700; font-style: italic; color: #3A3A3A; letter-spacing: 2px; }
-
-
 
         .modal-overlay {
             position: fixed; inset: 0; background: rgba(0, 0, 0, 0.85);
@@ -219,7 +189,6 @@
         }
 
         .modal-overlay.active { opacity: 1; pointer-events: all; }
-
         .modal-card {
             background: #0A0A0A; border: 1px solid #2C2C2C;
             width: 92vw; max-width: 820px; min-height: 440px;
@@ -229,35 +198,27 @@
             transition: transform 0.32s cubic-bezier(0.22, 1, 0.36, 1), border-color 0.25s ease;
         }
 
-        .modal-overlay.active .modal-card {
-            transform: scale(1) translateY(0);
-            border-color: var(--yellow);
-        }
+        .modal-overlay.active .modal-card { transform: scale(1) translateY(0); border-color: var(--yellow); }
 
         .modal-close {
             position: absolute; top: 18px; right: 22px;
             background: transparent; border: none; color: var(--gray);
             font-family: 'Space Mono', monospace; font-size: 1.25rem; font-weight: 700;
-            cursor: pointer; padding: 6px 10px;
+            cursor: pointer; padding: 6px 10px; z-index: 10;
         }
         .modal-close:hover, .modal-close:active { color: var(--yellow); }
 
-        .modal-body {
-            display: flex; gap: 32px; align-items: center; width: 100%;
-        }
+        .modal-body { display: flex; gap: 32px; align-items: center; width: 100%; }
 
-                .modal-photo-slot {
+        .modal-photo-slot {
             width: 320px; height: 320px; flex-shrink: 0;
             background: #050505; border: 1px solid #222222;
             display: flex; justify-content: center; align-items: center;
-            overflow: hidden; position: relative;
-            cursor: zoom-in;
+            overflow: hidden; position: relative; cursor: zoom-in;
             box-shadow: inset 0 0 28px 14px #0A0A0A;
         }
 
-        .modal-photo-slot.zoomed {
-            cursor: zoom-out;
-        }
+        .modal-photo-slot.zoomed { cursor: zoom-out; }
 
         .modal-photo-slot img {
             width: 100%; height: 100%; object-fit: cover; display: block;
@@ -267,158 +228,58 @@
         }
 
         .modal-photo-slot::after {
-            content: '';
-            position: absolute;
-            inset: 0;
+            content: ''; position: absolute; inset: 0;
             box-shadow: inset 0 0 32px 16px #0A0A0A;
-            backdrop-filter: blur(0px);
             -webkit-mask-image: radial-gradient(circle, transparent 58%, black 100%);
             mask-image: radial-gradient(circle, transparent 58%, black 100%);
-            backdrop-filter: blur(4px);
-            pointer-events: none;
-            z-index: 2;
+            backdrop-filter: blur(4px); pointer-events: none; z-index: 2;
         }
 
         .zoom-btn {
-            position: absolute;
-            bottom: 10px;
-            right: 10px;
-            z-index: 5;
-            background: rgba(10, 10, 10, 0.85);
-            color: var(--yellow);
-            border: 1px solid #333333;
-            padding: 4px 8px;
-            font-family: 'Space Mono', monospace;
-            font-size: 0.65rem;
-            font-weight: 700;
-            font-style: italic;
-            letter-spacing: 1px;
-            cursor: pointer;
-            transition: border-color 0.2s ease, background 0.2s ease;
+            position: absolute; bottom: 10px; right: 10px; z-index: 5;
+            background: rgba(10, 10, 10, 0.85); color: var(--yellow);
+            border: 1px solid #333333; padding: 4px 8px;
+            font-family: 'Space Mono', monospace; font-size: 0.65rem;
+            font-weight: 700; font-style: italic; letter-spacing: 1px; cursor: pointer;
         }
 
-        .zoom-btn:hover, .zoom-btn:active {
-            border-color: var(--yellow);
-            background: #141414;
-        }
+        .photo-placeholder { font-size: 0.85rem; color: #555555; text-align: center; letter-spacing: 2px; line-height: 1.5; padding: 12px; }
+        .modal-info { display: flex; flex-direction: column; gap: 14px; flex: 1; padding-right: 16px; }
+        .modal-title { font-size: 1.35rem; color: var(--text); line-height: 1.25; text-transform: uppercase; }
+        .modal-price { font-size: 1.05rem; color: var(--yellow); letter-spacing: 1px; }
+        .modal-desc { font-size: 0.88rem; color: #A8A8A8; line-height: 1.6; margin-top: 4px; }
 
-        .photo-placeholder {
-            font-size: 0.85rem; color: #555555; text-align: center;
-            letter-spacing: 2px; line-height: 1.5; padding: 12px;
-        }
-
-
-        .modal-info {
-            display: flex; flex-direction: column; gap: 14px; flex: 1; padding-right: 16px;
-        }
-
-        .modal-title {
-            font-size: 1.35rem; color: var(--text); line-height: 1.25; text-transform: uppercase;
-        }
-
-        .modal-price {
-            font-size: 1.05rem; color: var(--yellow); letter-spacing: 1px;
-        }
-
-        .modal-desc {
-            font-size: 0.88rem; color: #A8A8A8; line-height: 1.6; margin-top: 4px;
-        }
         .order-btn {
-            display: inline-block;
-            align-self: flex-start;
-            margin-top: 14px;
-            background: rgba(255, 107, 0, 0.12);
-            color: #FF6B00;
-            border: 1px solid #FF6B00;
-            padding: 12px 22px;
-            font-family: 'Space Mono', monospace;
-            font-size: 0.78rem;
-            font-weight: 700;
-            font-style: italic;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            text-decoration: none;
-            cursor: pointer;
-            transition: background 0.2s ease, color 0.2s ease;
-        }
-
-        .order-btn:hover, .order-btn:active {
-            background: #FF6B00;
-            color: #050505;
-        }
-        .order-btn.red {
-            background: rgba(217, 4, 22, 0.12);
-            color: var(--red);
-            border-color: var(--red);
-        }
-
-        .order-btn.red:hover, .order-btn.red:active {
-            background: var(--red);
-            color: #FFFFFF;
-            box-shadow: 0 0 18px rgba(217, 4, 22, 0.45);
-        }
-        .order-form {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            margin-top: 10px;
-            width: 100%;
-        }
-
-        .size-selector {
-            display: flex;
-            gap: 8px;
-        }
-
-        .size-btn {
-            background: #121212;
-            border: 1px solid #2C2C2C;
-            color: #A8A8A8;
-            padding: 8px 14px;
-            font-family: 'Space Mono', monospace;
-            font-size: 0.75rem;
-            font-weight: 700;
-            font-style: italic;
-            cursor: pointer;
+            display: inline-block; align-self: flex-start; margin-top: 14px;
+            background: rgba(255, 107, 0, 0.12); color: #FF6B00;
+            border: 1px solid #FF6B00; padding: 12px 22px;
+            font-family: 'Space Mono', monospace; font-size: 0.78rem;
+            font-weight: 700; font-style: italic; letter-spacing: 2px;
+            text-transform: uppercase; text-decoration: none; cursor: pointer;
             transition: all 0.2s ease;
         }
 
-        .size-btn.active {
-            border-color: var(--yellow);
-            color: var(--yellow);
-            background: rgba(255, 230, 0, 0.08);
+        .order-btn:hover, .order-btn:active {
+            background: #FF6B00; color: #050505;
+            box-shadow: 0 0 18px rgba(255, 107, 0, 0.45);
         }
 
-        .tg-input {
-            background: #050505;
-            border: 1px solid #2C2C2C;
-            color: #FFFFFF;
-            padding: 10px 12px;
-            font-family: 'Space Mono', monospace;
-            font-size: 0.78rem;
-            font-weight: 700;
-            font-style: italic;
-            outline: none;
-            width: 100%;
-            max-width: 260px;
+        .order-btn.red {
+            background: rgba(217, 4, 22, 0.12); color: var(--red); border-color: var(--red);
         }
 
-        .tg-input:focus {
-            border-color: var(--yellow);
-        }
-
-        .order-status-msg {
-            font-size: 0.72rem;
-            color: var(--yellow);
-            letter-spacing: 1px;
-            min-height: 16px;
+        .order-btn.red:hover, .order-btn.red:active {
+            background: var(--red); color: #FFFFFF;
+            box-shadow: 0 0 18px rgba(217, 4, 22, 0.45);
         }
 
         @media (max-width: 680px) {
-            .modal-card { padding: 24px 20px; min-height: auto; }
+            .modal-card { width: 92vw; max-width: 380px; min-height: auto; padding: 24px 20px; }
             .modal-body { flex-direction: column; gap: 18px; align-items: stretch; }
-            .modal-photo-slot { width: 100%; height: auto; aspect-ratio: 1 / 1; max-width: 280px; margin: 0 auto; }
+            .modal-photo-slot { width: 100%; height: auto; aspect-ratio: 1 / 1; max-width: 260px; margin: 0 auto; }
+            .modal-info { padding-right: 0; gap: 10px; }
             .modal-title { font-size: 1.05rem; }
+            .modal-price { font-size: 0.9rem; }
             .modal-desc { font-size: 0.78rem; }
         }
     </style>
@@ -435,12 +296,12 @@
 
     <div class="wrapper" id="catalog">
         <header>
-           <div class="title">𝕮𝖑𝖔𝖘𝖊𝖉 𝕽𝖔𝖘𝖊 𝕮𝖑𝖚𝖇</div>
+            <div class="title">𝕮𝖑𝖔𝖘𝖊𝖉 𝕽𝖔𝖘𝖊 𝕮𝖑𝖚𝖇</div>
             <div class="subtitle">OFFICIAL MARIA ROSE MERCH</div>
             <span class="jp">未知の出現 • 2026</span>
         </header>
 
-                <div class="list">
+        <div class="list">
             <div class="card" onclick="openItemModal(0)">
                 <div class="card-left">
                     <div class="item-name">"UNKNOWN DISAPPEARANCE 2020" TEE</div>
@@ -462,7 +323,7 @@
                     <div class="item-name">DOUBLE-SIDED KEYCHAIN</div>
                     <div class="item-price">333 ₽</div>
                 </div>
-                <div class="status orange">PRE-ORDER</div>
+               <div class="status green">IN STOCK</div>
             </div>
 
             <div class="card" onclick="openItemModal(3)">
@@ -474,28 +335,23 @@
             </div>
         </div>
 
-
-                                <!-- Твои соцсети (сверху) -->
         <div class="socials-section">
             <div class="socials-label">OUR SOCIALS</div>
             <div class="socials">
-                <a href="https://www.tiktok.com/@mariarosefanacc?_r=1&_t=ZS-9BRBUCxtDIA" target="_blank" rel="noopener noreferrer" class="social-link">[ TIKTOK ]</a>
-                <a href="ТВОЯ_ССЫЛКА_TELEGRAM" target="_blank" rel="noopener noreferrer" class="social-link">[ TELEGRAM ]</a>
+                <a href="https://tiktok.com" target="_blank" rel="noopener noreferrer" class="social-link">[ TIKTOK ]</a>
+                <a href="https://t.me" target="_blank" rel="noopener noreferrer" class="social-link">[ TELEGRAM ]</a>
             </div>
         </div>
 
-
-        <!-- Соцсети Maria Rose (ниже с заголовком) -->
         <div class="socials-section">
             <div class="socials-label">MARIA ROSE SOCIALS</div>
             <div class="socials">
-                <a href="https://www.tiktok.com/@marititova0?_r=1&_t=ZS-9BRCZABhz55" target="_blank" rel="noopener noreferrer" class="social-link">[ TIKTOK ]</a>
-                <a href="https://i.pinimg.com/736x/30/00/e6/3000e6fae03738ace7d4a7a6d7497352.jpg" target="_blank" rel="noopener noreferrer" class="social-link">[ TELEGRAM ]</a>
+                <a href="https://tiktok.com" target="_blank" rel="noopener noreferrer" class="social-link">[ TIKTOK ]</a>
+                <a href="https://pinimg.com" target="_blank" rel="noopener noreferrer" class="social-link">[ TELEGRAM ]</a>
             </div>
         </div>
 
         <footer>CLOSED ROSE CLUB © 2026</footer>
-
     </div>
 
     <div class="modal-overlay" id="itemModal" onclick="closeItemModal()">
@@ -509,23 +365,23 @@
                     <div class="modal-title" id="modalItemTitle"></div>
                     <div class="modal-price" id="modalItemPrice"></div>
                     <div class="modal-desc" id="modalItemDesc"></div>
-				                       <div class="order-form" id="modalOrderForm">
-                        <div class="size-selector" id="sizeSelector">
-                            <button type="button" class="size-btn active" onclick="selectSize(this, 'M')">M</button>
-                            <button type="button" class="size-btn" onclick="selectSize(this, 'L')">L</button>
-                            <button type="button" class="size-btn" onclick="selectSize(this, 'XL')">XL</button>
-                        </div>
-                        <input type="text" class="tg-input" id="tgUsernameInput" placeholder="@твой_юзернейм в ТГ">
-                        <button type="button" class="order-btn" id="modalOrderBtn" onclick="sendOrderToTg()">[ PRE-ORDER NOW ]</button>
-                        <div class="order-status-msg" id="orderStatusMsg"></div>
-                    </div>
-
+                    <a href="https://t.me" target="_blank" rel="noopener noreferrer" class="order-btn" id="modalOrderBtn">[ ORDER IN TELEGRAM ]</a>
                 </div>
             </div>
         </div>
     </div>
-
     <script>
+        document.getElementById('joinBtn').addEventListener('click', function() {
+            const tv = document.getElementById('tv-screen');
+            const catalog = document.getElementById('catalog');
+            tv.style.opacity = '0';
+            tv.style.pointerEvents = 'none';
+            setTimeout(function() {
+                tv.style.display = 'none';
+                catalog.classList.add('visible');
+            }, 300);
+        });
+
         const itemsData = [
             {
                 title: '"UNKNOWN DISAPPEARANCE" 2020 TEE',
@@ -537,23 +393,23 @@
                 title: '"UNKNOWN APPEARANCE" 2026 TEE',
                 price: '2 222 ₽ // PRE-ORDER',
                 desc: 'прямой наследник, никто не знает историю его появления.',
-                                photo: 'martit2026.png'
+                photo: 'martit2026.png'
             },
             {
                 title: 'DOUBLE-SIDED KEYCHAIN',
-                price: '333 ₽ // PRE-ORDER',
-                desc: 'двусторонний 3D - стикер под эпоксидной линзой. единственный экземпляр в частной коллекции.',
+              price: '333 ₽ // IN STOCK',
+                desc: 'двусторонний брелок покрытый эпоксидной смолой. единственный экземпляр в частной коллекции.',
                 photo: ''
             },
             {
                 title: 'PINK FURRY BELT',
                 price: 'ARCHIVED // 1 OF 1',
                 desc: 'розовый пушистый ремень. надпись "CAUTION! extreme SWAG level" говорит за себя.',
-                photo: 'fur-belt.png'
+                photo: ''
             }
         ];
 
-                let isPhotoZoomed = false;
+        let isPhotoZoomed = false;
 
         function openItemModal(index) {
             const item = itemsData[index];
@@ -570,91 +426,17 @@
             } else {
                 slot.innerHTML = '<div class="photo-placeholder">PHOTO<br>1:1</div>';
             }
-                        currentItemIndex = index;
-            selectedSize = 'M';
-            document.getElementById('orderStatusMsg').innerText = '';
-            document.getElementById('tgUsernameInput').value = '';
-
-            document.querySelectorAll('.size-btn').forEach((b, i) => b.classList.toggle('active', i === 0));
-
-            const sizeBox = document.getElementById('sizeSelector');
-            sizeBox.style.display = (index === 0 || index === 1) ? 'flex' : 'none';
 
             const orderBtn = document.getElementById('modalOrderBtn');
             if (index === 3) {
                 orderBtn.innerText = '[ REQUEST ITEM ]';
                 orderBtn.classList.add('red');
             } else {
-                orderBtn.innerText = '[ PRE-ORDER NOW ]';
+                orderBtn.innerText = '[ ORDER IN TELEGRAM ]';
                 orderBtn.classList.remove('red');
             }
 
             document.getElementById('itemModal').classList.add('active');
-        }
-        let currentItemIndex = 0;
-        let selectedSize = 'M';
-
-        function selectSize(btn, size) {
-            selectedSize = size;
-            document.querySelectorAll('.size-btn').forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
-        }
-
-        function sendOrderToTg() {
-            const tgUser = document.getElementById('tgUsernameInput').value.trim();
-            const statusEl = document.getElementById('orderStatusMsg');
-            const btn = document.getElementById('modalOrderBtn');
-
-            if (!tgUser) {
-                statusEl.style.color = '#D90416';
-                statusEl.innerText = 'ВВЕДИ СВОЙ @USERNAME В TELEGRAM';
-                return;
-            }
-
-            const item = itemsData[currentItemIndex];
-            const sizeText = (currentItemIndex === 0 || currentItemIndex === 1) ? `\n📏 Размер: ${selectedSize}` : '';
-            const cleanUser = tgUser.startsWith('@') ? tgUser : '@' + tgUser;
-
-            const message = `🥀 НОВАЯ ЗАЯВКА // CLOSED ROSE CLUB\n\n` +
-                            `📦 Айтем: ${item.title}\n` +
-                            `💰 Прайс: ${item.price}` +
-                            `${sizeText}\n` +
-                            `👤 Клиент: ${cleanUser}`;
-
-            // ВСТАВЬ СЮДА СВОИ ДАННЫЕ ИЗ TELEGRAM:
-            const BOT_TOKEN = '9291757857:AAGLYg-b83ulx1oreeNI0cTXPLunZRU3WUs';
-            const MY_CHAT_ID = '7719874790';
-
-            btn.innerText = 'ОТПРАВКА...';
-            btn.disabled = true;
-
-            fetch(`https://telegram.org{BOT_TOKEN}/sendMessage`, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    chat_id: MY_CHAT_ID,
-                    text: message
-                })
-            })
-            .then(res => res.json())
-            .then(data => {
-                if (data.ok) {
-                    statusEl.style.color = '#FFE600';
-                    statusEl.innerText = 'ЗАЯВКА ОТПРАВЛЕНА // СКОРО НАПИШУ В ТГ';
-                    btn.innerText = '[ SENT ✓ ]';
-                } else {
-                    statusEl.style.color = '#D90416';
-                    statusEl.innerText = 'ОШИБКА ОТПРАВКИ // ПРОВЕРЬ ТОКЕН';
-                    btn.innerText = '[ TRY AGAIN ]';
-                }
-                btn.disabled = false;
-            })
-            .catch(() => {
-                statusEl.style.color = '#D90416';
-                statusEl.innerText = 'ОШИБКА СЕТИ // ПОПРОБУЙ ЕЩЕ РАЗ';
-                btn.innerText = '[ TRY AGAIN ]';
-                btn.disabled = false;
-            });
         }
 
         function togglePhotoZoom(e) {
@@ -683,8 +465,8 @@
             if (!img) return;
 
             const rect = slot.getBoundingClientRect();
-            const clientX = (e.touches && e.touches.length) ? e.touches[0].clientX : e.clientX;
-            const clientY = (e.touches && e.touches.length) ? e.touches[0].clientY : e.clientY;
+            const clientX = (e.touches && e.touches.length) ? e.touches.clientX : e.clientX;
+            const clientY = (e.touches && e.touches.length) ? e.touches.clientY : e.clientY;
             const x = Math.max(0, Math.min(100, ((clientX - rect.left) / rect.width) * 100));
             const y = Math.max(0, Math.min(100, ((clientY - rect.top) / rect.height) * 100));
 
@@ -699,18 +481,6 @@
             isPhotoZoomed = false;
             document.getElementById('itemModal').classList.remove('active');
         }
-
-
-        document.getElementById('joinBtn').addEventListener('click', function() {
-            const tv = document.getElementById('tv-screen');
-            const catalog = document.getElementById('catalog');
-            tv.style.opacity = '0';
-            tv.style.pointerEvents = 'none';
-            setTimeout(function() {
-                tv.style.display = 'none';
-                catalog.classList.add('visible');
-            }, 300);
-        });
 
         (function() {
             const canvas = document.getElementById('petals-canvas');
