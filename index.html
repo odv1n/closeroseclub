@@ -742,23 +742,23 @@
         }
        
 
-                        .bg-watermark {
+                               .bg-watermark {
             position: fixed;
-            top: 50%;
-            left: 50%;
+            inset: 0;
+            margin: auto;
             width: 520px;
             height: 520px;
             max-width: 85vw;
             max-height: 85vw;
-            transform: translate(-50%, -50%);
             pointer-events: none;
             user-select: none;
             z-index: 10;
             opacity: 0.30;
             filter: contrast(165%) brightness(1.15);
+            transform: translate3d(0, 0, 0);
+            will-change: transform;
             animation: chromeFloat 12s ease-in-out infinite alternate;
         }
-
 
         .bg-watermark svg {
             width: 100%;
@@ -768,18 +768,19 @@
 
         @keyframes chromeFloat {
             0% {
-                transform: translate(-50%, -50%) rotate(0deg) scale(0.96);
+                transform: translate3d(0, 0, 0) rotate(0deg) scale(0.96);
                 filter: contrast(140%) brightness(0.95);
             }
             50% {
-                transform: translate(-50%, -52%) rotate(8deg) scale(1.04);
+                transform: translate3d(0, -10px, 0) rotate(8deg) scale(1.04);
                 filter: contrast(170%) brightness(1.25);
             }
             100% {
-                transform: translate(-50%, -48%) rotate(-6deg) scale(0.98);
+                transform: translate3d(0, 10px, 0) rotate(-6deg) scale(0.98);
                 filter: contrast(150%) brightness(1.05);
             }
         }
+
 
                 #tv-screen::before {
             content: '';
