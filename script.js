@@ -25,12 +25,14 @@ const itemsData = [
         desc: 'прямой наследник, никто не знает историю его появления.',
         photo: 'assets/martit2026.png'
     },
-    {
+        {
         title: 'DOUBLE-SIDED KEYCHAIN',
         price: '333 ₽ // IN STOCK',
         desc: 'двусторонний брелок покрытый эпоксидной смолой. единственный экземпляр в частной коллекции.',
-        photo: 'assets/keychain.png'
+        photo: 'assets/keychain.png',
+        photoBack: 'assets/keychain-back.png'
     },
+
     {
         title: 'PINK FURRY BELT',
         price: 'ARCHIVED // 1 OF 1',
@@ -53,8 +55,11 @@ const itemsData = [
 
 
 let isPhotoZoomed = false;
+let isPhotoFlipped = false;
+let currentItemIndex = 0;
 
 function openItemModal(index) {
+    currentItemIndex = index;
     const item = itemsData[index];
     document.getElementById('modalItemTitle').innerText = item.title;
     document.getElementById('modalItemPrice').innerText = item.price;
@@ -62,10 +67,14 @@ function openItemModal(index) {
 
     const slot = document.getElementById('modalPhotoSlot');
     isPhotoZoomed = false;
-    slot.classList.remove('zoomed');
+    isPhotoFlipped = false;
+    slot.classList.remove('zoomed', 'switching');
 
     if (item.photo) {
-        slot.innerHTML = '<img src="' + item.photo + '" id="zoomableImg" alt=""><button type="button" class="zoom-btn" id="zoomBtnLabel">[+ ZOOM]</button>';
+        const flipHtml = (index === 2 || item.photoBack)
+            ? '<button type="button" class="flip-btn" id="flipBtnLabel" onclick="flipKeychain(event)">[ SIDE A ]</button>'
+            : '';
+        slot.innerHTML = '<img src="' + item.photo + '" id="zoomableImg" alt="">' + flipHtml + '<button type="button" class="zoom-btn" id="zoomBtnLabel">[+ ZOOM]</button>';
     } else {
         slot.innerHTML = '<div class="photo-placeholder">PHOTO<br>1:1</div>';
     }
@@ -82,13 +91,46 @@ function openItemModal(index) {
     document.getElementById('itemModal').classList.add('active');
 }
 
+function flipKeychain(e) {
+    e.stopPropagation();
+    const img = document.getElementById('zoomableImg');
+    const slot = document.getElementById('modalPhotoSlot');
+    const flipBtn = document.getElementById('flipBtnLabel');
+    const zoomBtn = document.getElementById('zoomBtnLabel');
+    const item = itemsData[currentItemIndex];
+    if (!img) return;
+
+    if (isPhotoZoomed) {
+        isPhotoZoomed = false;
+        slot.classList.remove('zoomed');
+        if (zoomBtn) zoomBtn.innerText = '[+ ZOOM]';
+        img.style.transform = 'scale(1)';
+    }
+
+    isPhotoFlipped = !isPhotoFlipped;
+    if (flipBtn) {
+        flipBtn.innerText = isPhotoFlipped ? '[ SIDE B ]' : '[ SIDE A ]';
+    }
+
+    slot.classList.remove('switching');
+    void slot.offsetWidth;
+    slot.classList.add('switching');
+
+    if (item.photoBack) {
+        img.src = isPhotoFlipped ? item.photoBack : item.photo;
+    }
+}
+
 function togglePhotoZoom(e) {
+    if (e.target && e.target.id === 'flipBtnLabel') return;
     const img = document.getElementById('zoomableImg');
     const btn = document.getElementById('zoomBtnLabel');
     const slot = document.getElementById('modalPhotoSlot');
     if (!img) return;
 
+    slot.classList.remove('switching');
     isPhotoZoomed = !isPhotoZoomed;
+
     if (isPhotoZoomed) {
         slot.classList.add('zoomed');
         btn.innerText = '[- OUT]';
@@ -116,7 +158,6 @@ function moveZoom(e) {
     img.style.transformOrigin = x + '% ' + y + '%';
     img.style.transform = 'scale(2.2)';
 }
-
 document.getElementById('modalPhotoSlot').addEventListener('mousemove', moveZoom);
 document.getElementById('modalPhotoSlot').addEventListener('touchmove', moveZoom, { passive: true });
 
