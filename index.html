@@ -323,6 +323,40 @@
         .modal-desc {
             font-size: 0.88rem; color: #A8A8A8; line-height: 1.6; margin-top: 4px;
         }
+        .order-btn {
+            display: inline-block;
+            align-self: flex-start;
+            margin-top: 14px;
+            background: rgba(255, 107, 0, 0.12);
+            color: #FF6B00;
+            border: 1px solid #FF6B00;
+            padding: 12px 22px;
+            font-family: 'Space Mono', monospace;
+            font-size: 0.78rem;
+            font-weight: 700;
+            font-style: italic;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            text-decoration: none;
+            cursor: pointer;
+            transition: background 0.2s ease, color 0.2s ease;
+        }
+
+        .order-btn:hover, .order-btn:active {
+            background: #FF6B00;
+            color: #050505;
+        }
+        .order-btn.red {
+            background: rgba(217, 4, 22, 0.12);
+            color: var(--red);
+            border-color: var(--red);
+        }
+
+        .order-btn.red:hover, .order-btn.red:active {
+            background: var(--red);
+            color: #FFFFFF;
+            box-shadow: 0 0 18px rgba(217, 4, 22, 0.45);
+        }
 
         @media (max-width: 680px) {
             .modal-card { padding: 24px 20px; min-height: auto; }
@@ -419,6 +453,8 @@
                     <div class="modal-title" id="modalItemTitle"></div>
                     <div class="modal-price" id="modalItemPrice"></div>
                     <div class="modal-desc" id="modalItemDesc"></div>
+				   <a href="ТВОЯ_ССЫЛКА_НА_TELEGRAM" target="_blank" rel="noopener noreferrer" class="order-btn" id="modalOrderBtn">[ ORDER IN TELEGRAM ]</a>
+
                 </div>
             </div>
         </div>
@@ -468,6 +504,14 @@
                 slot.innerHTML = '<img src="' + item.photo + '" id="zoomableImg" alt=""><button type="button" class="zoom-btn" id="zoomBtnLabel">[+ ZOOM]</button>';
             } else {
                 slot.innerHTML = '<div class="photo-placeholder">PHOTO<br>1:1</div>';
+            }
+            const orderBtn = document.getElementById('modalOrderBtn');
+            if (index === 3) {
+                orderBtn.innerText = '[ REQUEST ITEM ]';
+                orderBtn.classList.add('red');
+            } else {
+                orderBtn.innerText = '[ ORDER IN TELEGRAM ]';
+                orderBtn.classList.remove('red');
             }
 
             document.getElementById('itemModal').classList.add('active');
