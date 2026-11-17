@@ -346,21 +346,3 @@ function lockRosePosition() {
 }
 window.addEventListener('load', lockRosePosition);
 window.addEventListener('orientationchange', () => setTimeout(lockRosePosition, 200));
-
-const chromeGrad = document.getElementById('chromeGrad');
-const pointLight = document.getElementById('pointLight');
-
-function animateChromeRose(now) {
-    if (chromeGrad) {
-        const angle = ((now % 9000) / 9000) * 360;
-        chromeGrad.setAttribute('gradientTransform', `rotate(${angle.toFixed(1)} 0.5 0.5)`);
-    }
-    if (pointLight) {
-        const rad = ((now % 8000) / 8000) * Math.PI * 2;
-        pointLight.setAttribute('x', (200 + Math.cos(rad) * 120).toFixed(1));
-        pointLight.setAttribute('y', (200 + Math.sin(rad) * 110).toFixed(1));
-    }
-    requestAnimationFrame(animateChromeRose);
-}
-requestAnimationFrame(animateChromeRose);
-
