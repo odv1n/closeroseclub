@@ -30,7 +30,7 @@ const itemsData = [
         price: '333 ₽ // IN STOCK',
         desc: 'двусторонний брелок покрытый эпоксидной смолой. единственный экземпляр в частной коллекции.',
         photo: 'assets/keychain1.png',
-        photoBack: 'assets/keychain2.png'
+        photoBack: 'assets/keychain2.png'lockRosePosition
     },
 
     {
@@ -346,3 +346,21 @@ function lockRosePosition() {
 }
 window.addEventListener('load', lockRosePosition);
 window.addEventListener('orientationchange', () => setTimeout(lockRosePosition, 200));
+
+const chromeGrad = document.getElementById('chromeGrad');
+const pointLight = document.getElementById('pointLight');
+
+function animateChromeRose(now) {
+    if (chromeGrad) {
+        const angle = ((now % 9000) / 9000) * 360;
+        chromeGrad.setAttribute('gradientTransform', `rotate(${angle.toFixed(1)} 0.5 0.5)`);
+    }
+    if (pointLight) {
+        const rad = ((now % 8000) / 8000) * Math.PI * 2;
+        pointLight.setAttribute('x', (200 + Math.cos(rad) * 120).toFixed(1));
+        pointLight.setAttribute('y', (200 + Math.sin(rad) * 110).toFixed(1));
+    }
+    requestAnimationFrame(animateChromeRose);
+}
+requestAnimationFrame(animateChromeRose);
+
