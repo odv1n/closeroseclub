@@ -25,14 +25,13 @@ const itemsData = [
         desc: 'прямой наследник, никто не знает историю его появления.',
         photo: 'assets/martit2026.png'
     },
-        {
-        title: '"MISSING" DOUBLE-SIDED KEYCHAIN',
+    {
+        title: 'DOUBLE-SIDED KEYCHAIN',
         price: '333 ₽ // IN STOCK',
         desc: 'двусторонний брелок покрытый эпоксидной смолой. единственный экземпляр в частной коллекции.',
         photo: 'assets/keychain1.png',
-        photoBack: 'assets/keychain2.png'lockRosePosition
+        photoBack: 'assets/keychain2.png'
     },
-
     {
         title: 'PINK FURRY BELT',
         price: 'ARCHIVED // 1 OF 1',
@@ -52,7 +51,6 @@ const itemsData = [
         photo: ''
     }
 ];
-
 
 let isPhotoZoomed = false;
 let isPhotoFlipped = false;
@@ -158,6 +156,7 @@ function moveZoom(e) {
     img.style.transformOrigin = x + '% ' + y + '%';
     img.style.transform = 'scale(2.2)';
 }
+
 document.getElementById('modalPhotoSlot').addEventListener('mousemove', moveZoom);
 document.getElementById('modalPhotoSlot').addEventListener('touchmove', moveZoom, { passive: true });
 
