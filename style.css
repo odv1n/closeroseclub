@@ -629,7 +629,6 @@ body.mode-mobile .mode-switcher-btn { display: block; }
         padding-top: 12px !important;
         margin-top: 0 !important;
     }
-    .bg-watermark g { filter: none !important; }
     body::before { filter: none !important; opacity: 0.55; }
     .modal-photo-slot::after { backdrop-filter: none !important; }
     .modal-overlay { transition: opacity 0.14s linear, visibility 0.14s linear !important; }
