@@ -27,7 +27,7 @@ const itemsData = [
     },
     {
         title: 'DOUBLE-SIDED KEYCHAIN',
-        price: '333 ₽ // IN STOCK',
+        price: '333 ₽ // PRE-ORDER',
         desc: 'двусторонний брелок покрытый эпоксидной смолой. единственный экземпляр в частной коллекции.',
         photo: 'assets/keychain1.png',
         photoBack: 'assets/keychain2.png'
@@ -39,16 +39,16 @@ const itemsData = [
         photo: 'assets/fur-belt.png'
     },
     {
-        title: 'ARCHIVE LOT 05 // SOON',
-        price: '0 ₽ // SOON',
-        desc: 'описание пятого лота появится здесь.',
-        photo: ''
+        title: '"UNKNOWN (DIS)APPEARANCE" STICKERS',
+        price: '222 ₽ // PRE-ORDER',
+        desc: 'стикеры покрытые эпоксидным слоем. мелкие детали большого исчезновения.',
+        photo: 'assets/stickers.png'
     },
     {
-        title: 'ARCHIVE LOT 06 // SOON',
-        price: '0 ₽ // SOON',
-        desc: 'описание шестого лота появится здесь.',
-        photo: ''
+        title: '"UNKNOWN EMBLEM" MOUSEPAD',
+        price: '1 555 ₽ // PRE-ORDER',
+        desc: 'черный коврик с оверлоком и шипованной розой по центру. откуда взялся этот символ, до сих пор никто не объяснил.',
+        photo: 'assets/mousepad.png'
     }
 ];
 
