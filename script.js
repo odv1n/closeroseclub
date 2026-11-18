@@ -26,7 +26,7 @@ const itemsData = [
         photo: 'assets/martit2026.png'
     },
     {
-        title: 'DOUBLE-SIDED KEYCHAIN',
+        title: '"MISSING" DOUBLE-SIDED KEYCHAIN',
         price: '333 ₽ // PRE-ORDER',
         desc: 'двусторонний брелок покрытый эпоксидной смолой. единственный экземпляр в частной коллекции.',
         photo: 'assets/keychain1.png',
@@ -45,7 +45,7 @@ const itemsData = [
         photo: 'assets/stickers.png'
     },
     {
-        title: '"MISSING" DOUBLE-SIDED KEYCHAIN',
+        title: '"UNKNOWN EMBLEM" MOUSEPAD',
         price: '1 555 ₽ // PRE-ORDER',
         desc: 'черный коврик с оверлоком и шипованной розой по центру. откуда взялся этот символ, до сих пор никто не объяснил.',
         photo: 'assets/mousepad.png'
