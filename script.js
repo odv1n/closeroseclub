@@ -45,7 +45,7 @@ const itemsData = [
         photo: 'assets/stickers.png'
     },
     {
-        title: '"UNKNOWN EMBLEM" MOUSEPAD',
+        title: '"MISSING" DOUBLE-SIDED KEYCHAIN',
         price: '1 555 ₽ // PRE-ORDER',
         desc: 'черный коврик с оверлоком и шипованной розой по центру. откуда взялся этот символ, до сих пор никто не объяснил.',
         photo: 'assets/mousepad.png'
