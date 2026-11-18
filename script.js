@@ -345,3 +345,14 @@ function lockRosePosition() {
 }
 window.addEventListener('load', lockRosePosition);
 window.addEventListener('orientationchange', () => setTimeout(lockRosePosition, 200));
+(function checkMobileBrowser() {
+    const isMobileUA = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+    
+    if (isMobileUA) {
+        document.body.classList.add('is-mobile-browser');
+        const svg = document.querySelector('.bg-watermark svg');
+        if (svg && typeof svg.pauseAnimations === 'function') {
+            svg.pauseAnimations();
+        }
+    }
+})();

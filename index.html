@@ -5,12 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>𝕮𝖑𝖔𝖘𝖊𝖉 𝕽𝖔𝖘𝖊 𝕮𝖑𝖚𝖇</title>
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://w3.org viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2216%22 fill=%22%23050505%22/><text x=%2250%22 y=%2276%22 font-size=%2272%22 text-anchor=%22middle%22 fill=%22%23FFE600%22>𝕮</text></svg>">
-        <link rel="stylesheet" href="style.css?v=7">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="bg-watermark">
         <svg viewBox="0 0 400 400" xmlns="http://w3.org">
-                       <defs>
+            <defs>
                 <linearGradient id="chromeGrad" x1="0%" y1="0%" x2="100%" y2="100%">
                     <stop offset="0%" stop-color="#0B0D12" />
                     <stop offset="25%" stop-color="#6E7A8A" />
@@ -19,6 +19,7 @@
                     <stop offset="58%" stop-color="#FFFFFF" />
                     <stop offset="75%" stop-color="#22262E" />
                     <stop offset="100%" stop-color="#08090C" />
+                    <animateTransform attributeName="gradientTransform" type="rotate" from="0 0.5 0.5" to="360 0.5 0.5" dur="9s" repeatCount="indefinite" />
                 </linearGradient>
 
                 <filter id="liquidMetal" x="-25%" y="-25%" width="150%" height="150%">
@@ -26,13 +27,16 @@
                     <feDisplacementMap in="SourceGraphic" in2="noise" scale="28" xChannelSelector="R" yChannelSelector="G" result="displaced" />
                     <feGaussianBlur in="displaced" stdDeviation="2.2" result="blurSurface" />
                     <feSpecularLighting in="blurSurface" surfaceScale="5" specularConstant="1.25" specularExponent="28" lighting-color="#E6F0FF" result="specular">
-                        <fePointLight x="280" y="130" z="140" />
+                        <fePointLight x="200" y="120" z="140">
+                            <animate attributeName="x" values="80;320;240;80" dur="8s" repeatCount="indefinite" />
+                            <animate attributeName="y" values="90;160;310;90" dur="8s" repeatCount="indefinite" />
+                        </fePointLight>
                     </feSpecularLighting>
                     <feComposite in="specular" in2="displaced" operator="in" result="clippedSpecular" />
                     <feBlend in="displaced" in2="clippedSpecular" mode="screen" />
                 </filter>
             </defs>
-			
+
             <g filter="url(#liquidMetal)">
                 <path d="M200,88 L216,18 L234,94 Z" fill="url(#chromeGrad)" />
                 <path d="M282,126 L354,68 L302,152 Z" fill="url(#chromeGrad)" />
